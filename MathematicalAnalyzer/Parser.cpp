@@ -62,6 +62,27 @@ void ParseTree::resolveTree(Node *base){
         }
     }
     
+    /* This part handles exponential expressions */
+    for(int i=1;i<childs.size()-1;i++){
+        if(childs[i]->nodeType == NodeType::opr && (childs[i]->oprType == OprType::pow)){
+            if(childs[i+1]->nodeType != NodeType::opr && childs[i-1]->nodeType != NodeType::opr){
+                Node* expr = new Node({.nodeType = NodeType::expr});
+                Node* opr = childs[i];
+                Node* base = childs[i-1];
+                Node* power = childs[i+1];
+                opr->childs.push_back(base);
+                opr->childs.push_back(power);
+                expr->childs.push_back(opr);
+                childs.insert(childs.begin()+i-1, expr);
+                childs.erase(childs.begin()+i,childs.begin()+i+3);
+                
+            }
+            else{
+                throw "Operation needs expression";
+            }
+        }
+    }
+    
     /*This part adds mult node where necessary*/
     for (int i=0; i<childs.size()-1; i++) {
         if(childs[i]->nodeType == NodeType::expr){

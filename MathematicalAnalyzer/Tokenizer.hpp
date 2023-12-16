@@ -21,7 +21,8 @@ enum class OprType{
     add,
     sub,
     mult,
-    div
+    div,
+    pow
 };
 
 enum class FunType{

@@ -15,6 +15,7 @@ double Function::fun(Node *base, double x){
             case OprType::mult: return fun(base->childs[0],x) * fun(base->childs[1],x);
             case OprType::div: return fun(base->childs[0],x) / fun(base->childs[1],x);
             case OprType::sub: return fun(base->childs[0],x) - fun(base->childs[1],x);
+            case OprType::pow: return std::pow(fun(base->childs[0],x),fun(base->childs[1],x));
         }
     }
     else if(base->nodeType == NodeType::fun){

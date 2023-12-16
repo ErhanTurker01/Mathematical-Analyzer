@@ -12,12 +12,19 @@
 
 
 int main() {
-    lineIdentifier iden("test.txt");
-    std::vector<Line> lines = iden.identifyLines();
-    for(auto line: lines){
-        std::cout << line.str << " " << (int)line.type << '\n';
-    }
-    
-    
+    std::string contents;
+        {
+            std::stringstream contents_stream;
+            std::fstream input("test.txt", std::ios::in);
+            contents_stream << input.rdbuf();
+            contents = contents_stream.str();
+        }
+    std::cout << contents << std::endl;
+    Tokenizer tokenizer(contents);
+    auto tokens = tokenizer.tokenize();
+    ParseTree parser(tokens);
+    auto start = parser.Parse();
+    Function fun(start);
+    fun(1);
     return 0;
 }

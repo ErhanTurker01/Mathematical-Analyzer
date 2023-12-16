@@ -65,6 +65,10 @@ std::vector<Token> Tokenizer::tokenize(){
             tokens.push_back({.type = TokenType::opr, .oprType = OprType::div});
             consume();
         }
+        else if(peek().value() == '^'){
+            tokens.push_back({.type = TokenType::opr, .oprType = OprType::pow});
+            consume();
+        }
     }
     return tokens;
 }
