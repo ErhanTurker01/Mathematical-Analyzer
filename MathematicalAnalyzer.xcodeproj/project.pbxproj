@@ -11,6 +11,7 @@
 		8FFBA0852B2CC407005A7AC1 /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBA07F2B2CC407005A7AC1 /* Parser.cpp */; };
 		8FFBA0862B2CC407005A7AC1 /* Tokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBA0832B2CC407005A7AC1 /* Tokenizer.cpp */; };
 		8FFBA0872B2CC407005A7AC1 /* Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBA0842B2CC407005A7AC1 /* Function.cpp */; };
+		8FFBA08D2B2CD389005A7AC1 /* lineIdentifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBA08B2B2CD389005A7AC1 /* lineIdentifier.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		8FFBA0822B2CC407005A7AC1 /* Tokenizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tokenizer.hpp; sourceTree = "<group>"; };
 		8FFBA0832B2CC407005A7AC1 /* Tokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tokenizer.cpp; sourceTree = "<group>"; };
 		8FFBA0842B2CC407005A7AC1 /* Function.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Function.cpp; sourceTree = "<group>"; };
+		8FFBA08B2B2CD389005A7AC1 /* lineIdentifier.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lineIdentifier.cpp; sourceTree = "<group>"; };
+		8FFBA08C2B2CD389005A7AC1 /* lineIdentifier.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lineIdentifier.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 			isa = PBXGroup;
 			children = (
 				8FFBA0782B2CC3AE005A7AC1 /* main.cpp */,
+				8FFBA08B2B2CD389005A7AC1 /* lineIdentifier.cpp */,
+				8FFBA08C2B2CD389005A7AC1 /* lineIdentifier.hpp */,
 				8FFBA0842B2CC407005A7AC1 /* Function.cpp */,
 				8FFBA0802B2CC407005A7AC1 /* Function.hpp */,
 				8FFBA07F2B2CC407005A7AC1 /* Parser.cpp */,
@@ -135,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FFBA0862B2CC407005A7AC1 /* Tokenizer.cpp in Sources */,
+				8FFBA08D2B2CD389005A7AC1 /* lineIdentifier.cpp in Sources */,
 				8FFBA0852B2CC407005A7AC1 /* Parser.cpp in Sources */,
 				8FFBA0792B2CC3AE005A7AC1 /* main.cpp in Sources */,
 				8FFBA0872B2CC407005A7AC1 /* Function.cpp in Sources */,
