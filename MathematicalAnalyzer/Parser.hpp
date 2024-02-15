@@ -13,7 +13,8 @@ enum class NodeType{
     num,
     opr,
     var,
-    fun
+    fun,
+    der
 };
 
 typedef struct Node Node;
@@ -36,6 +37,7 @@ class ParseTree{
     
 private:
     void resolveTree(Node* base);
+    Node* applyDerivative(Node* base);
 
 public:
     void parse(std::vector<Token> tokens, Node* base);

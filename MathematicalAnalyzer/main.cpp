@@ -20,11 +20,7 @@ int main() {
             contents = contents_stream.str();
         }
     std::cout << contents << std::endl;
-    Tokenizer tokenizer(contents);
-    auto tokens = tokenizer.tokenize();
-    ParseTree parser(tokens);
-    auto start = parser.Parse();
-    Function fun(start);
-    fun(1);
+    Function fun(ParseTree(Tokenizer(contents).tokenize()).Parse());
+    std::cout << fun(1.5) << '\n';
     return 0;
 }

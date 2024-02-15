@@ -22,6 +22,8 @@ double Function::fun(Node *base, double x){
         switch (base->funType.value()) {
             case FunType::sin:return sin(fun(base->childs[0],x)); break;
             case FunType::cos:return cos(fun(base->childs[0],x));break;
+            case FunType::ln:return log(fun(base->childs[0],x));break;
+            case FunType::abs:return fabs(fun(base->childs[0],x));break;
         }
     }
     else {

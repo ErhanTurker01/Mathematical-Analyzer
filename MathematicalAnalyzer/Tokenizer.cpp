@@ -14,12 +14,24 @@ std::vector<Token> Tokenizer::tokenize(){
                     tokens.push_back({.type = TokenType::var});
                     buf.clear();
                 }
+                else if(buf == "der"){
+                    tokens.push_back({.type = TokenType::der});
+                    buf.clear();
+                }
                 else if(buf == "sin"){
                     tokens.push_back({.type = TokenType::fun, .funType = FunType::sin});
                     buf.clear();
                 }
                 else if(buf == "cos"){
                     tokens.push_back({.type = TokenType::fun, .funType = FunType::cos});
+                    buf.clear();
+                }
+                else if(buf == "ln"){
+                    tokens.push_back({.type = TokenType::fun, .funType = FunType::ln});
+                    buf.clear();
+                }
+                else if(buf == "abs"){
+                    tokens.push_back({.type = TokenType::fun, .funType = FunType::abs});
                     buf.clear();
                 }
             }

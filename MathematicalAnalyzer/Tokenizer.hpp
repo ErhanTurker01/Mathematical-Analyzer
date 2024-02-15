@@ -14,7 +14,8 @@ enum class TokenType{
     pr,
     num,
     opr,
-    fun
+    fun,
+    der
 };
 
 enum class OprType{
@@ -27,8 +28,11 @@ enum class OprType{
 
 enum class FunType{
     sin,
-    cos
+    cos,
+    ln,
+    abs
 };
+
 
 
 
