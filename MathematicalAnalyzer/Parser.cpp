@@ -326,7 +326,8 @@ Node* ParseTree::applyDerivative(Node* base){
                 *lnexpr = new Node({.nodeType = NodeType::expr}),
                 *absexpr = new Node({.nodeType = NodeType::expr}),
                 *mlngdexpr = new Node({.nodeType = NodeType::expr}),
-                *sumexpr = new Node({.nodeType = NodeType::expr});
+                *sumexpr = new Node({.nodeType = NodeType::expr}),
+                *all = new Node({.nodeType = NodeType::expr});
                 sumexpr->childs.push_back(add);
                 add->childs.push_back(fdtgexpr);
                 fdtgexpr->childs.push_back(mult1);
@@ -346,7 +347,81 @@ Node* ParseTree::applyDerivative(Node* base){
                 absexpr->childs.push_back(f2);
                 mult3->childs.push_back(base);
                 mult3->childs.push_back(sumexpr);
-                return mult3;
+                all->childs.push_back(mult3);
+                return all;
+        }
+    }
+    else if (base->nodeType == NodeType::fun){
+        switch (base->funType.value()) {
+            case FunType::cos:
+            {
+                Node* sin = new Node({.nodeType = NodeType::fun, .funType = FunType::sin}),
+                *d = applyDerivative(base->childs[0]),
+                *mult1 = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
+                *mult2 = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
+                *expr1 = new Node({.nodeType = NodeType::expr}),
+                *expr2 = new Node({.nodeType = NodeType::expr}),
+                *expr3 = new Node({.nodeType = NodeType::expr}),
+                *one = new Node({.nodeType =  NodeType::num, .value = -1});
+                expr1->childs.push_back(mult1);
+                mult1->childs.push_back(one);
+                mult1->childs.push_back(expr2);
+                expr2->childs.push_back(mult2);
+                mult2->childs.push_back(d);
+                mult2->childs.push_back(expr3);
+                expr3->childs.push_back(sin);
+                sin->childs.push_back(new Node(*base->childs[0]));
+                return expr1;
+            }
+            case FunType::sin:
+            {
+                Node* cos = new Node({.nodeType = NodeType::fun, .funType = FunType::cos}),
+                *d = applyDerivative(base->childs[0]),
+                *mult = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
+                *expr1 = new Node({.nodeType = NodeType::expr}),
+                *expr2 = new Node({.nodeType = NodeType::expr});
+                expr1->childs.push_back(mult);
+                mult->childs.push_back(d);
+                mult->childs.push_back(expr2);
+                expr2->childs.push_back(cos);
+                cos->childs.push_back(new Node(*base->childs[0]));
+                return expr1;
+            }
+            case FunType::ln:
+            {
+                Node* expr = new Node({.nodeType = NodeType::expr}),
+                *div = new Node({.nodeType = NodeType::opr, .oprType = OprType::div}),
+                *d = applyDerivative(base->childs[0]);
+                expr->childs.push_back(div);
+                div->childs.push_back(d);
+                div->childs.push_back(new Node(*base->childs[0]));
+                return expr;
+            }
+            case FunType::abs:
+            {
+                Node* abs = new Node({.nodeType = NodeType::fun, .funType = FunType::abs}),
+                *expr1 = new Node({.nodeType = NodeType::expr}),
+                *expr2 = new Node({.nodeType = NodeType::expr}),
+                *expr3 = new Node({.nodeType = NodeType::expr}),
+                *expr4 = new Node({.nodeType = NodeType::expr}),
+                *expr5 = new Node({.nodeType = NodeType::expr}),
+                *mult = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
+                *div = new Node({.nodeType = NodeType::opr, .oprType = OprType::div}),
+                *f1 = new Node(*base->childs[0]),
+                *f2 = new Node(*base->childs[0]),
+                *d = applyDerivative(base->childs[0]);
+                expr1->childs.push_back(mult);
+                mult->childs.push_back(d);
+                mult->childs.push_back(expr2);
+                expr2->childs.push_back(div);
+                div->childs.push_back(expr3);
+                div->childs.push_back(expr4);
+                expr3->childs.push_back(f1);
+                expr4->childs.push_back(abs);
+                abs->childs.push_back(expr5);
+                expr5->childs.push_back(f2);
+                return expr1;
+            }
         }
     }
     return nullptr;

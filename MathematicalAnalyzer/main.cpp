@@ -21,6 +21,6 @@ int main() {
         }
     std::cout << contents << std::endl;
     Function fun(ParseTree(Tokenizer(contents).tokenize()).Parse());
-    std::cout << fun(1.5) << '\n';
+    std::cout << fun(3.5) << '\n';
     return 0;
 }
