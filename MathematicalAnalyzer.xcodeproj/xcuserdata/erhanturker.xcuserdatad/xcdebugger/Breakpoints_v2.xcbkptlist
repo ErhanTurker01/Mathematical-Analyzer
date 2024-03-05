@@ -14,10 +14,8 @@
             filePath = "MathematicalAnalyzer/main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "main()"
-            landmarkType = "9">
+            startingLineNumber = "36"
+            endingLineNumber = "36">
             <Locations>
                <Location
                   uuid = "652E0A36-291E-411C-B00D-00E35A2E4F8F - 98d2c00d5a98c897"
@@ -55,216 +53,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4CE7261E-703F-4AE0-8CD3-8ADE9B619B23"
+            uuid = "8BA31BF1-9307-473D-8A06-1CA795910EA9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MathematicalAnalyzer/Parser.cpp"
+            filePath = "MathematicalAnalyzer/main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
-            landmarkName = "ParseTree::applyDerivative(base)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F1A01014-77A2-427C-8E88-2FFA2D8FB080"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MathematicalAnalyzer/Parser.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "428"
-            endingLineNumber = "428"
-            landmarkName = "ParseTree::applyDerivative(base)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MathematicalAnalyzer/Parser.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "427"
-            endingLineNumber = "427"
-            landmarkName = "ParseTree::applyDerivative(base)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE - 4ec75cff3fcfcd2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ParseTree::applyDerivative(functionNode::Node*)"
-                  moduleName = "MathematicalAnalyzer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "427"
-                  endingLineNumber = "427"
-                  offsetFromSymbolStart = "144">
-               </Location>
-               <Location
-                  uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE - 4ec75cff3fcfcd2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ParseTree::applyDerivative(functionNode::Node*)"
-                  moduleName = "MathematicalAnalyzer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "427"
-                  endingLineNumber = "427"
-                  offsetFromSymbolStart = "788">
-               </Location>
-               <Location
-                  uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE - 4ec75cff3fcfcd2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ParseTree::applyDerivative(functionNode::Node*)"
-                  moduleName = "MathematicalAnalyzer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "427"
-                  endingLineNumber = "427"
-                  offsetFromSymbolStart = "1520">
-               </Location>
-               <Location
-                  uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE - 4ec75cff3fcfcd2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ParseTree::applyDerivative(functionNode::Node*)"
-                  moduleName = "MathematicalAnalyzer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "427"
-                  endingLineNumber = "427"
-                  offsetFromSymbolStart = "3080">
-               </Location>
-               <Location
-                  uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE - 4ec75cff3fcfcd2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ParseTree::applyDerivative(functionNode::Node*)"
-                  moduleName = "MathematicalAnalyzer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "427"
-                  endingLineNumber = "427"
-                  offsetFromSymbolStart = "3220">
-               </Location>
-               <Location
-                  uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE - 4ec75cff3fcfcd2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ParseTree::applyDerivative(functionNode::Node*)"
-                  moduleName = "MathematicalAnalyzer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "427"
-                  endingLineNumber = "427"
-                  offsetFromSymbolStart = "5104">
-               </Location>
-               <Location
-                  uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE - 4ec75cff3fcfcd2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ParseTree::applyDerivative(functionNode::Node*)"
-                  moduleName = "MathematicalAnalyzer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "427"
-                  endingLineNumber = "427"
-                  offsetFromSymbolStart = "6272">
-               </Location>
-               <Location
-                  uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE - 4ec75cff3fcfcd2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ParseTree::applyDerivative(functionNode::Node*)"
-                  moduleName = "MathematicalAnalyzer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "427"
-                  endingLineNumber = "427"
-                  offsetFromSymbolStart = "6932">
-               </Location>
-               <Location
-                  uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE - 4ec75cff3fcfcd2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ParseTree::applyDerivative(functionNode::Node*)"
-                  moduleName = "MathematicalAnalyzer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "427"
-                  endingLineNumber = "427"
-                  offsetFromSymbolStart = "7356">
-               </Location>
-               <Location
-                  uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE - 4ec75cff3fcfcd2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ParseTree::applyDerivative(functionNode::Node*)"
-                  moduleName = "MathematicalAnalyzer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "427"
-                  endingLineNumber = "427"
-                  offsetFromSymbolStart = "8348">
-               </Location>
-               <Location
-                  uuid = "CEA8E301-541D-419D-8A0E-667685EB93BE - 4ec75cff3fcfcd2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ParseTree::applyDerivative(functionNode::Node*)"
-                  moduleName = "MathematicalAnalyzer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "427"
-                  endingLineNumber = "427"
-                  offsetFromSymbolStart = "8512">
-               </Location>
-            </Locations>
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "main()"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
