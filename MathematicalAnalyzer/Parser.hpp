@@ -38,8 +38,6 @@ class ParseTree{
 private:
     void resolveTree(Node* base);
     Node* applyDerivative(Node* base);
-
-public:
     void parse(std::vector<Token> tokens, Node* base);
     
 public:
@@ -49,7 +47,7 @@ public:
     }
     
     ParseTree(std::vector<Token> tokens):
-    src(std::move(tokens)),start(new Node({.nodeType = NodeType::expr})){}
+    src(tokens),start(new Node({.nodeType = NodeType::expr})){}
     
 };
 

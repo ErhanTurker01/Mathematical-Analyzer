@@ -6,21 +6,30 @@
 #include "Tokenizer.hpp"
 #include "Parser.hpp"
 #include "Function.hpp"
-#include "lineIdentifier.hpp"
+#include "Line.hpp"
 
 
 
 
 int main() {
-    std::string contents;
-        {
-            std::stringstream contents_stream;
-            std::fstream input("test.txt", std::ios::in);
-            contents_stream << input.rdbuf();
-            contents = contents_stream.str();
+    std::fstream input("test.txt", std::ios::in);
+    std::vector<Function> functions;
+    for(std::string lineStr; std::getline(input,lineStr);){
+        Line line(lineStr, Tokenizer(lineStr).tokenize());
+        if(line.getLineType() == LineType::funDef){
+            functions.push_back(Function(ParseTree(Tokenizer(line.getFunDef()).tokenize()).Parse(), line.getFunName()));
         }
-    std::cout << contents << std::endl;
-    Function fun(ParseTree(Tokenizer(contents).tokenize()).Parse());
-    std::cout << fun(3.5) << '\n';
+        else if(line.getLineType() == LineType::showFunVal){
+            for (auto fun : functions) {
+                if(fun.getName() == line.getFunName()){
+                    
+                    std::cout << line.getFunName() << "(" << line.getFunVal() << ") = " << fun(line.getFunVal()) << std::endl;
+                }
+            }
+        }
+    }
+    
     return 0;
+    
+    
 }

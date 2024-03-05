@@ -36,7 +36,8 @@ std::vector<Token> Tokenizer::tokenize(){
                 }
             }
             if(buf.size()){
-                throw "Not defined var or fun";
+                tokens.push_back({.type = TokenType::other, .value = buf});
+                buf.clear();
             }
         }
         /*This part handles numbers*/
@@ -79,6 +80,10 @@ std::vector<Token> Tokenizer::tokenize(){
         }
         else if(peek().value() == '^'){
             tokens.push_back({.type = TokenType::opr, .oprType = OprType::pow});
+            consume();
+        }
+        else if(peek().value() == '='){
+            tokens.push_back({.type = TokenType::eq});
             consume();
         }
     }

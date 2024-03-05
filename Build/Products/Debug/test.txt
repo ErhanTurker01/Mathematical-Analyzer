@@ -1,1 +1,6 @@
-ln(x^x-x^2)^(cos(sin(2x)))
+f(x) =der( x^3)
+f(3)
+f(1.4124)
+f(2.5553)
+g(x) = der(ln((sin(x)^x)))
+g(3.14)

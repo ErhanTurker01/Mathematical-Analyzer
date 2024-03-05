@@ -15,7 +15,9 @@ enum class TokenType{
     num,
     opr,
     fun,
-    der
+    der,
+    eq,
+    other
 };
 
 enum class OprType{
@@ -34,15 +36,12 @@ enum class FunType{
 };
 
 
-
-
-
-typedef struct{
+struct Token{
     TokenType type;
     std::optional<std::string> value;
     std::optional<OprType> oprType;
     std::optional<FunType> funType;
-}Token;
+};
 
 class Tokenizer{
     const std::string src;
@@ -53,7 +52,7 @@ private:
     char consume(){return src.at(index++);}
     
 public:
-    Tokenizer(std::string src):src(std::move(src)),index(0){}
+    Tokenizer(std::string src):src(src),index(0){}
     std::vector<Token> tokenize();
 };
 

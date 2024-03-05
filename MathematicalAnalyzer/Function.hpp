@@ -13,9 +13,11 @@ using namespace functionNode;
 
 class Function{
     Node* src;
+    std::string name;
 public:
-    Function(Node* src):src(src) {}
+    Function(Node* src, std::string name):src(src),name(name) {}
     double operator ()(double x){return fun(src,x);}
+    std::string getName(){return name;}
     
 private:
     double fun(Node* base, double x);
