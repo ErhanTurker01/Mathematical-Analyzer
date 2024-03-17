@@ -3,7 +3,7 @@
 
 using namespace functionNode;
 /*From tokens creates a tree with necessary nodes*/
-void ParseTree::parse(std::vector<Token> tokens, Node *base){
+void Parser::Parse(std::vector<Token> tokens, Node *base){
     {
         int prc = 0, plc = 0,begin = 0;
         for(int end=0;end<tokens.size();end++){
@@ -12,7 +12,7 @@ void ParseTree::parse(std::vector<Token> tokens, Node *base){
             if(token.type == TokenType::pr) prc++;
             if(prc == plc && (plc+prc)){
                 base->childs.push_back(new Node({.nodeType = NodeType::expr}));
-                parse(std::vector<Token>(tokens.begin() + begin + 1, tokens.begin() + end), base->childs.back());
+                Parse(std::vector<Token>(tokens.begin() + begin + 1, tokens.begin() + end), base->childs.back());
                 begin = end + 1;
                 prc = 0;
                 plc = 0;
@@ -37,18 +37,44 @@ void ParseTree::parse(std::vector<Token> tokens, Node *base){
                 base->childs.push_back(new Node({.nodeType = NodeType::der}));
                 begin++;
             }
+            else if(!(prc-plc) && token.type == TokenType::other && isDefinedFunction(token.value.value())){
+                base->childs.push_back(new Node({.nodeType = NodeType::userFun, .name = token.value.value()}));
+                begin++;
+            }
+            else if(!(prc-plc) && token.type == TokenType::other && isDefinedVariable(token.value.value())){
+                base->childs.push_back(new Node({.nodeType = NodeType::userNum, .name = token.value.value()}));
+                begin++;
+            }
         }
     }
     resolveTree(base);
 }
 
 /*Result after parse function is not binary tree. This function takes that tree and makes it a binary tree for easier implementation*/
-void ParseTree::resolveTree(Node *base){
+void Parser::resolveTree(Node *base){
     /*reference for later use*/
     std::vector<Node*>& childs = base->childs;
+    
+    for(int i=0;i<childs.size();i++){
+        Node* child = childs[i];
+        if (child->nodeType == NodeType::userNum) {
+            int i;
+            for (i=0; child->name != variableNames[i]; i++);
+            child->value = variableValues[i];
+            child->nodeType = NodeType::num;
+        }
+        else if(child->nodeType == NodeType::userFun){
+            int i;
+            for (i=0; child->name != functionNames[i]; i++);
+            child->nodeType = NodeType::expr;
+            child->childs.push_back(copyParseTree(functionExprs[i]));
+            childs.erase(childs.begin()+i+1);
+        }
+    }
+    
     for(auto node:childs) if(node->nodeType == NodeType::expr) resolveTree(node);
     
-    /* This part handles funcitons */
+    /* This part handles functions */
     for(int i=0;i<childs.size();i++){
         if(childs[i]->nodeType == NodeType::fun){
             if(childs[i+1] != NULL && childs[i+1]->nodeType == NodeType::expr){
@@ -238,7 +264,7 @@ void ParseTree::resolveTree(Node *base){
     }
 }
 
-Node* ParseTree::applyDerivative(Node* base){
+Node* Parser::applyDerivative(Node* base){
     std::vector<Node*>& childs = base->childs;
     if(base->nodeType == NodeType::expr) return new Node(*applyDerivative(childs[0]));
     else if(base->nodeType == NodeType::num) return new Node({.nodeType = NodeType::num, .value = 0});
@@ -425,4 +451,26 @@ Node* ParseTree::applyDerivative(Node* base){
         }
     }
     return nullptr;
+}
+
+Node* Parser::copyParseTree(Node* base){
+    Node* newBase = new Node(*base);
+    for(Node* child : base->childs) newBase->childs.push_back(new Node({*copyParseTree(child)}));
+    return newBase;
+}
+
+void Parser::changeEveryVariableWith(Node* base, Node* expr){
+    std::vector<Node*> variables;
+    for (Node* child : base->childs) {
+        if (child->nodeType == NodeType::var) variables.push_back(child);
+        changeEveryVariableWith(child, expr);
+    }
+    for (Node* var : variables) {
+        var = copyParseTree(expr);
+    }
+}
+
+void Parser::deleteTree(Node* base){
+    for (Node* child : base->childs) deleteTree(child);
+    delete base;
 }
