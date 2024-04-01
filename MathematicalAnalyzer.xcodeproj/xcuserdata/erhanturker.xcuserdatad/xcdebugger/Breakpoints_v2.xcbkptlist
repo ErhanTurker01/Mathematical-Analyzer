@@ -14,8 +14,8 @@
             filePath = "MathematicalAnalyzer/main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36">
+            startingLineNumber = "54"
+            endingLineNumber = "54">
             <Locations>
                <Location
                   uuid = "652E0A36-291E-411C-B00D-00E35A2E4F8F - 98d2c00d5a98c897"
@@ -60,10 +60,535 @@
             filePath = "MathematicalAnalyzer/main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "main()"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83951EB3-886B-44A8-A78C-37F6717B7157"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "main()"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "83951EB3-886B-44A8-A78C-37F6717B7157 - 98d2c00d5a98c5f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "main"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "1616">
+               </Location>
+               <Location
+                  uuid = "83951EB3-886B-44A8-A78C-37F6717B7157 - 98d2c00d5a98c5f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "main"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "1720">
+               </Location>
+               <Location
+                  uuid = "83951EB3-886B-44A8-A78C-37F6717B7157 - 98d2c00d5a98c5f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "main"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "1824">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C26DCD5E-EB1A-4F92-B5C3-8F013EDF10B2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "8"
+            endingLineNumber = "8"
+            landmarkName = "Parser::parse(tokens, base)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "76EE6054-5781-4E9F-8838-D00B7ED52733"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "Parser::resolveTree(base)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "76EE6054-5781-4E9F-8838-D00B7ED52733 - 1baa8b4f72eccd1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::resolveTree(functionNode::Node*)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "600">
+               </Location>
+               <Location
+                  uuid = "76EE6054-5781-4E9F-8838-D00B7ED52733 - 1baa8b4f72eccd1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::resolveTree(functionNode::Node*)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "592">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ACAB177A-0139-4938-966B-50F187AEE87D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "Parser::resolveTree(base)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ACAB177A-0139-4938-966B-50F187AEE87D - 1baa8b4f72eccd3d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::resolveTree(functionNode::Node*)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "620">
+               </Location>
+               <Location
+                  uuid = "ACAB177A-0139-4938-966B-50F187AEE87D - 1baa8b4f72eccd3d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::resolveTree(functionNode::Node*)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "632">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C8232578-CF8B-4261-B094-5D6497F45DA1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "Parser::resolveTree(base)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9EB0DEAE-8385-4398-A606-E5A87C5C0197"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "Parser::resolveTree(base)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC540D4E-6920-4777-931C-C2A19B74CE1F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "Parser::resolveTree(base)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5E47D2A-239D-40AC-B169-7D9BC01AFD16"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "Parser::parse(tokens, base)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D88E1331-4533-4666-909D-8D17BB98EDDD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "Parser::resolveTree(base)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20465712-63E2-417F-BC8A-A126D3D06F53"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "Parser::resolveTree(base)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "94559E09-E190-4785-AA8D-10535D14BFE7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "489"
+            endingLineNumber = "489"
+            landmarkName = "Parser::changeEveryVariableWith(base, expr)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "94559E09-E190-4785-AA8D-10535D14BFE7 - ed16c183b749bdd8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::changeEveryVariableWith(functionNode::Node*, functionNode::Node*)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "490"
+                  endingLineNumber = "490"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "94559E09-E190-4785-AA8D-10535D14BFE7 - ed16c183b749bdfb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::changeEveryVariableWith(functionNode::Node*, functionNode::Node*)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "489"
+                  endingLineNumber = "489"
+                  offsetFromSymbolStart = "188">
+               </Location>
+               <Location
+                  uuid = "94559E09-E190-4785-AA8D-10535D14BFE7 - ed16c183b749bdfb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::changeEveryVariableWith(functionNode::Node*, functionNode::Node*)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "489"
+                  endingLineNumber = "489"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  uuid = "94559E09-E190-4785-AA8D-10535D14BFE7 - ed16c183b749bdfb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::changeEveryVariableWith(functionNode::Node*, functionNode::Node*)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "489"
+                  endingLineNumber = "489"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F87E548E-EA99-46DF-9C13-A3140FB356FE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "485"
+            endingLineNumber = "485"
+            landmarkName = "Parser::changeEveryVariableWith(base, expr)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5EC9F9FA-7748-40EF-B20F-E6B7E26ACEA5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "486"
+            endingLineNumber = "486"
+            landmarkName = "Parser::changeEveryVariableWith(base, expr)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "90C4744A-2EDC-4EFC-835C-C21E388D0799"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "482"
+            endingLineNumber = "482"
+            landmarkName = "Parser::findEveryVariable(base, vars)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "90C4744A-2EDC-4EFC-835C-C21E388D0799 - ca252668a638ae16"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::findEveryVariable(functionNode::Node*, std::__1::vector&lt;functionNode::Node*, std::__1::allocator&lt;functionNode::Node*&gt;&gt;&amp;)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "482"
+                  endingLineNumber = "482"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "90C4744A-2EDC-4EFC-835C-C21E388D0799 - ca252668a638ae16"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::findEveryVariable(functionNode::Node*, std::__1::vector&lt;functionNode::Node*, std::__1::allocator&lt;functionNode::Node*&gt;&gt;&amp;)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "482"
+                  endingLineNumber = "482"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0141B642-C983-45CE-B6CA-084594F6F614"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "487"
+            endingLineNumber = "487"
+            landmarkName = "Parser::changeEveryVariableWith(base, expr)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C147FEF4-F3B7-43C3-AA48-B34E88C97F68"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "481"
+            endingLineNumber = "481"
+            landmarkName = "Parser::findEveryVariable(base, vars)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F43486D1-4F99-4176-AC1E-7BF13B6AE112"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Parser.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
+            landmarkName = "Parser::changeEveryVariableWith(base, expr)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F43486D1-4F99-4176-AC1E-7BF13B6AE112 - ed16c183b749bd9a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::changeEveryVariableWith(functionNode::Node*, functionNode::Node*)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "488"
+                  endingLineNumber = "488"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "F43486D1-4F99-4176-AC1E-7BF13B6AE112 - ed16c183b749bd9a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Parser::changeEveryVariableWith(functionNode::Node*, functionNode::Node*)"
+                  moduleName = "MathematicalAnalyzer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer/Parser.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "488"
+                  endingLineNumber = "488"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B3FE6CB-7538-41AC-839C-908A6DA8A0F4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/Tokenizer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "Tokenizer::tokenize()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

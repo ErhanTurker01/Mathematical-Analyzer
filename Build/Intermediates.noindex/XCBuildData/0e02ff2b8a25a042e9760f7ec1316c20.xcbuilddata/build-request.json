@@ -1,0 +1,56 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "19152af701e02deff2434a0a352962e2679cf0f59f7eab807217c376c96f448a"
+    }
+  ],
+  "containerPath" : "/Users/erhanturker/Documents/git/Mathematical-Analyzer/MathematicalAnalyzer.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx14.0",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/erhanturker/Documents/git/Mathematical-Analyzer/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/erhanturker/Documents/git/Mathematical-Analyzer/Build/Products",
+      "derivedDataPath" : "/Users/erhanturker/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/erhanturker/Library/Developer/Xcode/DerivedData/MathematicalAnalyzer-ezimmpbbyjruxccdupvwedxmkavw/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/erhanturker/Library/Developer/Xcode/DerivedData/MathematicalAnalyzer-ezimmpbbyjruxccdupvwedxmkavw/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/erhanturker/Documents/git/Mathematical-Analyzer/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Release",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "profile",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

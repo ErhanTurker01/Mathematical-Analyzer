@@ -21,7 +21,7 @@ int main() {
         switch (line.getLineType()) {
             case LineType::varDef:
             {
-                parser.addVariable(line.getVarName(), std::stod(line.getVarVal()));
+                parser.addVariable(line.getVarName(), parser.parse(Tokenizer(line.getVarVal()).tokenize()));
                 break;
             }
             case LineType::funDef:
