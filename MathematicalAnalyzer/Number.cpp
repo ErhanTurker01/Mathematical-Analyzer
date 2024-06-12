@@ -186,3 +186,19 @@ void Number::sinSelf(){
 void Number::print(mpfr_prec_t decimal){
     mpfr_printf("%.*RNf",decimal, value);
 }
+
+
+void ComplexNumber::operator = (const ComplexNumber& other){
+    mpfr_set(real.value, other.real.value, MPFR_RNDN);
+    mpfr_set(imaginary.value, other.imaginary.value, MPFR_RNDN);
+}
+void ComplexNumber::operator = (const Number& otherReal){
+    mpfr_set(real.value, otherReal.value, MPFR_RNDN);
+}
+void ComplexNumber::operator = (const mpfr_t &other){
+    mpfr_set(real.value, other, MPFR_RNDN);
+}
+void ComplexNumber::operator = (const long double &other){
+    mpfr_set_d(real.value, other, MPFR_RNDN);
+}
+
