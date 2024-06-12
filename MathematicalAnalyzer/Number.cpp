@@ -183,3 +183,6 @@ void Number::sinSelf(){
     mpfr_sin(value, value, MPFR_RNDN);
 }
 
+void Number::print(mpfr_prec_t decimal){
+    mpfr_printf("%.*RNf",decimal, value);
+}
