@@ -67,3 +67,63 @@ void Number::operator = (const long double &num){
 void Number::operator = (const mpfr_t &other){
     mpfr_set(value, other, MPFR_RNDN);
 }
+
+Number Number::operator + (const Number &other) const{
+    Number num;
+    mpfr_add(num.value, value, other.value, MPFR_RNDN);
+    return num;
+}
+
+Number Number::operator - ()const{
+    Number num;
+    mpfr_neg(num.value, num.value, MPFR_RNDN);
+    return num;
+}
+
+Number Number::operator - (const Number &other) const{
+    Number num;
+    mpfr_sub(num.value, value, other.value, MPFR_RNDN);
+    return num;
+}
+
+Number Number::operator * (const Number &other)const{
+    Number num;
+    if(!mpfr_equal_p(value, other.value)) mpfr_mul(num.value, value, other.value, MPFR_RNDN);
+    else mpfr_sqr(num.value, value, MPFR_RNDN);
+    return num;
+}
+
+Number Number::operator / (const Number &other) const{
+    Number num;
+    mpfr_div(num.value, value, other.value, MPFR_RNDN);
+    return num;
+}
+
+Number Number::operator ^ (const Number &other) const{
+    Number num;
+    mpfr_pow(num.value, value, other.value, MPFR_RNDN);
+    return num;
+}
+
+void Number::operator += (const Number &other){
+    mpfr_add(value, value, other.value, MPFR_RNDN);
+}
+
+void Number::operator -= (const Number &other){
+    mpfr_sub(value, value, other.value, MPFR_RNDN);
+}
+
+void Number::operator *= (const Number &other){
+    if(!mpfr_equal_p(value, other.value)) mpfr_mul(value, value, other.value, MPFR_RNDN);
+    else mpfr_sqr(value, value, MPFR_RNDN);
+}
+
+void Number::operator /= (const Number &other){
+    mpfr_div(value, value, other.value, MPFR_RNDN);
+}
+
+void Number::operator ^= (const Number &other){
+    mpfr_pow(value, value, other.value, MPFR_RNDN);
+}
+
+    return num;
