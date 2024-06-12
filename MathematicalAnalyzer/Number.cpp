@@ -202,3 +202,116 @@ void ComplexNumber::operator = (const long double &other){
     mpfr_set_d(real.value, other, MPFR_RNDN);
 }
 
+ComplexNumber ComplexNumber::operator + (const ComplexNumber &other)const{
+    ComplexNumber cmplx;
+    cmplx = *this;
+    cmplx += (other);
+    return cmplx;
+}
+
+ComplexNumber ComplexNumber::operator + (const Number &other)const{
+    ComplexNumber cmplx;
+    cmplx = *this;
+    cmplx += (other);
+    return cmplx;
+}
+
+ComplexNumber ComplexNumber::operator - (const ComplexNumber &other)const{
+    ComplexNumber cmplx;
+    cmplx = *this;
+    cmplx -= (other);
+    return cmplx;
+}
+
+ComplexNumber ComplexNumber::operator - (const Number &other)const{
+    ComplexNumber cmplx;
+    cmplx = *this;
+    cmplx -= (other);
+    return cmplx;
+}
+
+ComplexNumber ComplexNumber::operator - ()const{
+    ComplexNumber cmplx;
+    cmplx = *this;
+    cmplx.real *= *Number::negOne;
+    cmplx.imaginary = *Number::negOne;
+    return cmplx;
+}
+
+ComplexNumber ComplexNumber::operator * (const ComplexNumber &other)const{
+    ComplexNumber cmplx;
+    cmplx = *this;
+    cmplx *= (other);
+    return cmplx;
+}
+
+ComplexNumber ComplexNumber::operator * (const Number &other)const{
+    ComplexNumber cmplx;
+    cmplx = *this;
+    cmplx *= other;
+    return cmplx;
+}
+
+ComplexNumber ComplexNumber::operator / (const ComplexNumber &other)const{
+    ComplexNumber cmplx;
+    cmplx = *this;
+    cmplx /= other;
+    return cmplx;
+}
+
+ComplexNumber ComplexNumber::operator / (const Number &other)const{
+    ComplexNumber cmplx;
+    cmplx = *this;
+    cmplx /= other;
+    return cmplx;
+}
+
+
+
+void ComplexNumber::operator += (const ComplexNumber &other){
+    real += other.real;
+    imaginary += other.imaginary;
+}
+
+void ComplexNumber::operator += (const Number &other){
+    real += other;
+}
+
+void ComplexNumber::operator -= (const ComplexNumber &other){
+    real -= other.real;
+    imaginary -= other.imaginary;
+}
+
+void ComplexNumber::operator -= (const Number &other){
+    real -= other;
+}
+
+void ComplexNumber::operator *= (const ComplexNumber &other){
+    Number temp;
+    temp = real;
+    real *= other.real;
+    Number temp2 = imaginary * other.imaginary;
+    real -= temp2;
+    imaginary *= other.real;
+    Number temp3 = temp * other.imaginary;
+    imaginary += temp3;
+}
+
+void ComplexNumber::operator *= (const Number &other){
+    real *= other;
+    imaginary *= other;
+}
+
+void ComplexNumber::operator /= (const ComplexNumber &other){
+    ComplexNumber con; con = other.conjugate();
+    Number len; len = other.abs();
+    len ^= *Number::two;
+    *this *= con;
+    *this /= len;
+}
+
+void ComplexNumber::operator /= (const Number &other){
+    real /= other;
+    imaginary /= other;
+}
+
