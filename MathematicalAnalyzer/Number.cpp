@@ -39,3 +39,31 @@ void Number::deInit(){
     Number::half->~Number();
     mpfr_free_cache();
 }
+
+Number::Number(){
+    mpfr_init2(value, *Number::defaultPrc);
+    mpfr_set_zero(value, 1);
+}
+
+Number::~Number(){
+    mpfr_clear(value);
+}
+
+Number::Number(const Number &other){
+    this->value->_mpfr_d = other.value->_mpfr_d;
+    this->value->_mpfr_exp = other.value->_mpfr_exp;
+    this->value->_mpfr_prec = other.value->_mpfr_prec;
+    this->value->_mpfr_sign = other.value->_mpfr_sign;
+}
+
+void Number::operator = (const Number &other){
+    mpfr_set(value, other.value, MPFR_RNDN);
+}
+
+void Number::operator = (const long double &num){
+    mpfr_set_d(value, num, MPFR_RNDN);
+}
+
+void Number::operator = (const mpfr_t &other){
+    mpfr_set(value, other, MPFR_RNDN);
+}
