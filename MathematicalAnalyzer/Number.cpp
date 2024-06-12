@@ -126,4 +126,60 @@ void Number::operator ^= (const Number &other){
     mpfr_pow(value, value, other.value, MPFR_RNDN);
 }
 
+void Number::logSelf(const Number& base){
+    if (mpfr_equal_p(base.value, Number::e->value)) mpfr_log(value, value, MPFR_RNDN);
+    else if (mpfr_equal_p(base.value, Number::ten->value)){
+        mpfr_log10(value, value, MPFR_RNDN);
+    }
+    else if (mpfr_equal_p(base.value, Number::two->value)){
+        mpfr_log2(value, value, MPFR_RNDN);
+    }
+    else{
+        Number num;
+        num = base;
+        mpfr_log(value, value, MPFR_RNDN);
+        mpfr_log(num.value, num.value, MPFR_RNDN);
+        mpfr_div(value, value, num.value, MPFR_RNDN);
+    }
+}
+
+Number Number::log(const Number& base) const{
+    Number num;
+    mpfr_set(num.value, value, MPFR_RNDN);
+    num.logSelf(base);
     return num;
+}
+
+Number Number::abs() const{
+    Number num;
+    mpfr_set(num.value, value, MPFR_RNDN);
+    num.absSelf();
+    return num;
+}
+
+void Number::absSelf(){
+    mpfr_abs(value, value, MPFR_RNDN);
+}
+
+Number Number::cos() const{
+    Number num;
+    mpfr_set(num.value, value, MPFR_RNDN);
+    num.cosSelf();
+    return num;
+}
+
+void Number::cosSelf(){
+    mpfr_cos(value, value, MPFR_RNDN);
+}
+
+Number Number::sin() const{
+    Number num;
+    mpfr_set(num.value, value, MPFR_RNDN);
+    num.sinSelf();
+    return num;
+}
+
+void Number::sinSelf(){
+    mpfr_sin(value, value, MPFR_RNDN);
+}
+
