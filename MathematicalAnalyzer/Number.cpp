@@ -266,6 +266,13 @@ ComplexNumber ComplexNumber::operator / (const Number &other)const{
     return cmplx;
 }
 
+ComplexNumber ComplexNumber::operator ^ (const ComplexNumber &other)const{
+    ComplexNumber cmplx;
+    cmplx = *this;
+    cmplx ^= (other);
+    return cmplx;
+}
+
 void ComplexNumber::operator += (const ComplexNumber &other){
     real += other.real;
     imaginary += other.imaginary;
@@ -311,6 +318,28 @@ void ComplexNumber::operator /= (const ComplexNumber &other){
 void ComplexNumber::operator /= (const Number &other){
     real /= other;
     imaginary /= other;
+}
+
+void ComplexNumber::operator ^= (const ComplexNumber &other){
+    Number h = abs();
+    h.logSelf(*Number::e);
+    Number modulus; modulus = *Number::e;
+    Number farg = arg();
+    Number mod1 = other.real * h;
+    Number mod2 = other.imaginary * farg;
+    Number modDif = mod1 - mod2;
+    modulus ^= modDif;
+
+    h *= other.imaginary;
+    Number arg1 = other.real * farg;
+    h += arg1;
+    real = modulus;
+    Number cos1 = h.cos();
+    Number sin1 = h.sin();
+    real *= cos1;
+    imaginary = modulus;
+    imaginary *= sin1;
+
 }
 
 ComplexNumber ComplexNumber::log(const Number& base)const{
