@@ -406,3 +406,21 @@ ComplexNumber ComplexNumber::conjugate() const{
 void ComplexNumber::conjugateSelf(){
     mpfr_neg(imaginary.value, imaginary.value, MPFR_RNDN);
 }
+
+void ComplexNumber::print(mpfr_prec_t decimal){
+    if(!mpfr_zero_p(real.value)) real.print(decimal);
+    if(!mpfr_zero_p(imaginary.value)){
+        if(mpfr_get_flt(imaginary.value, MPFR_RNDN) < 0){
+            Number temp = imaginary.abs();
+            printf(" - ");
+            temp.print(decimal);
+            printf("i\n");
+        }
+        else{
+            Number temp = imaginary.abs();
+            printf(" + ");
+            temp.print(decimal);
+            printf("i\n");
+        }
+    }
+}
