@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-Target 'MathematicalAnalyzer' in project 'MathematicalAnalyzer' (no dependencies)

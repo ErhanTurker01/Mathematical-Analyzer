@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F5EDDC12C1D01080046A349 /* Number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F5EDDBF2C1D01080046A349 /* Number.cpp */; };
+		8F5EDDC42C1D02320046A349 /* libmpfr.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F5EDDC32C1D02320046A349 /* libmpfr.6.dylib */; };
 		8FAFAFB82B8E5B4F00723D0B /* Line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FAFAFB62B8E5B4F00723D0B /* Line.cpp */; };
 		8FFBA0792B2CC3AE005A7AC1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBA0782B2CC3AE005A7AC1 /* main.cpp */; };
 		8FFBA0852B2CC407005A7AC1 /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FFBA07F2B2CC407005A7AC1 /* Parser.cpp */; };
@@ -27,6 +29,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F5EDDBF2C1D01080046A349 /* Number.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Number.cpp; sourceTree = "<group>"; };
+		8F5EDDC02C1D01080046A349 /* Number.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Number.hpp; sourceTree = "<group>"; };
+		8F5EDDC32C1D02320046A349 /* libmpfr.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpfr.6.dylib; path = ../../../../../opt/homebrew/Cellar/mpfr/4.2.1/lib/libmpfr.6.dylib; sourceTree = "<group>"; };
 		8FAFAFB62B8E5B4F00723D0B /* Line.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Line.cpp; sourceTree = "<group>"; };
 		8FAFAFB72B8E5B4F00723D0B /* Line.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
 		8FFBA0752B2CC3AE005A7AC1 /* MathematicalAnalyzer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MathematicalAnalyzer; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,17 +49,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F5EDDC42C1D02320046A349 /* libmpfr.6.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F5EDDC22C1D02320046A349 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F5EDDC32C1D02320046A349 /* libmpfr.6.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8FFBA06C2B2CC3AE005A7AC1 = {
 			isa = PBXGroup;
 			children = (
 				8FFBA0772B2CC3AE005A7AC1 /* MathematicalAnalyzer */,
 				8FFBA0762B2CC3AE005A7AC1 /* Products */,
+				8F5EDDC22C1D02320046A349 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +93,8 @@
 				8FFBA0822B2CC407005A7AC1 /* Tokenizer.hpp */,
 				8FAFAFB62B8E5B4F00723D0B /* Line.cpp */,
 				8FAFAFB72B8E5B4F00723D0B /* Line.hpp */,
+				8F5EDDBF2C1D01080046A349 /* Number.cpp */,
+				8F5EDDC02C1D01080046A349 /* Number.hpp */,
 			);
 			path = MathematicalAnalyzer;
 			sourceTree = "<group>";
@@ -139,6 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F5EDDC12C1D01080046A349 /* Number.cpp in Sources */,
 				8FFBA0862B2CC407005A7AC1 /* Tokenizer.cpp in Sources */,
 				8FFBA0852B2CC407005A7AC1 /* Parser.cpp in Sources */,
 				8FFBA0792B2CC3AE005A7AC1 /* main.cpp in Sources */,
@@ -269,6 +287,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/Cellar/gmp/6.3.0/include,
+					/opt/homebrew/Cellar/mpfr/4.2.1/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/mpfr/4.2.1/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -277,6 +303,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/Cellar/gmp/6.3.0/include,
+					/opt/homebrew/Cellar/mpfr/4.2.1/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/mpfr/4.2.1/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

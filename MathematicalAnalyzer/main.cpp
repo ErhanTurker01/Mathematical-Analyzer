@@ -7,11 +7,12 @@
 #include "Parser.hpp"
 #include "Function.hpp"
 #include "Line.hpp"
-
+#include "Number.hpp"
 
 
 
 int main() {
+    Number::init();
     std::fstream input("test.txt", std::ios::in);
     Parser parser;
     std::vector<Function> functions;
@@ -46,7 +47,7 @@ int main() {
             }
         }/* End of switch */
     }/* End of lines */
-    
+    Number::deInit();
     return 0;
     
     

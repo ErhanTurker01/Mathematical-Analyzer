@@ -14,8 +14,8 @@
             filePath = "MathematicalAnalyzer/main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54">
+            startingLineNumber = "55"
+            endingLineNumber = "55">
             <Locations>
                <Location
                   uuid = "652E0A36-291E-411C-B00D-00E35A2E4F8F - 98d2c00d5a98c897"
@@ -60,8 +60,8 @@
             filePath = "MathematicalAnalyzer/main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "main()"
             landmarkType = "9">
          </BreakpointContent>
@@ -76,8 +76,8 @@
             filePath = "MathematicalAnalyzer/main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "main()"
             landmarkType = "9">
             <Locations>
