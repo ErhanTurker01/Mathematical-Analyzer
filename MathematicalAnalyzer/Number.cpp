@@ -313,6 +313,26 @@ void ComplexNumber::operator /= (const Number &other){
     imaginary /= other;
 }
 
+ComplexNumber ComplexNumber::log(const Number& base)const{
+    ComplexNumber cmplx;
+    cmplx.real = real;
+    cmplx.imaginary = imaginary;
+    cmplx.logSelf(base);
+    return cmplx;
+}
+
+void ComplexNumber::logSelf(const Number& base){
+    Number mod, argument, ebase;
+    mod = abs();
+    argument = arg();
+    ebase = *Number::e;
+    ebase.logSelf(base);
+    real = mod;
+    real.logSelf(base);
+    imaginary = mod;
+    imaginary *= ebase;
+}
+
 Number ComplexNumber::abs() const{
     Number num;
     ComplexNumber cmplx;
