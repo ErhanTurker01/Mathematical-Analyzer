@@ -266,8 +266,6 @@ ComplexNumber ComplexNumber::operator / (const Number &other)const{
     return cmplx;
 }
 
-
-
 void ComplexNumber::operator += (const ComplexNumber &other){
     real += other.real;
     imaginary += other.imaginary;
@@ -315,3 +313,47 @@ void ComplexNumber::operator /= (const Number &other){
     imaginary /= other;
 }
 
+Number ComplexNumber::abs() const{
+    Number num;
+    ComplexNumber cmplx;
+    cmplx = *this;
+    cmplx.absSelf();
+    num = cmplx.real;
+    return num;
+}
+
+void ComplexNumber::absSelf(){
+    real ^= *Number::two;
+    imaginary ^= *Number::two;
+    real += imaginary;
+    real ^= *Number::half;
+    imaginary = 0;
+}
+
+Number ComplexNumber::arg() const{
+    Number num;
+    ComplexNumber cmplx;
+    cmplx.real = real;
+    cmplx.imaginary = imaginary;
+    cmplx.argSelf();
+    num = cmplx.real;
+    return num;
+}
+
+void ComplexNumber::argSelf(){
+    imaginary /= real;
+    mpfr_atan(real.value, imaginary.value, MPFR_RNDN);
+    imaginary = 0;
+}
+
+ComplexNumber ComplexNumber::conjugate() const{
+    ComplexNumber cmplx;
+    cmplx.real = real;
+    cmplx.imaginary = imaginary;
+    cmplx.conjugateSelf();
+    return cmplx;
+}
+
+void ComplexNumber::conjugateSelf(){
+    mpfr_neg(imaginary.value, imaginary.value, MPFR_RNDN);
+}
