@@ -50,8 +50,8 @@ std::string Line::getFunDef(){
 std::string Line::getFunName(){
     return tokens[0].value.value();
 }
-double Line::getFunVal(){
-    return std::stod(tokens[2].value.value());
+Number Line::getFunVal(){
+    return Number::getFromString(tokens[2].value.value());
 }
 
 std::string Line::getVarName(){

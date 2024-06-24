@@ -7,6 +7,7 @@
 
 #include <string>
 #include "Tokenizer.hpp"
+#include "Number.hpp"
 #ifndef Line_hpp
 #define Line_hpp
 
@@ -29,7 +30,7 @@ public:
     std::string getFunName();
     std::string getVarVal();
     std::string getVarName();
-    double getFunVal();
+    Number getFunVal();
     LineType getLineType();
 };
 

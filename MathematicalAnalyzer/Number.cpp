@@ -30,30 +30,51 @@ void Number::init (const mpfr_prec_t &prc){
 }
 
 void Number::deInit(){
-    Number::e->~Number();
-    Number::pi->~Number();
-    Number::one->~Number();
     Number::ten->~Number();
     Number::two->~Number();
-    Number::negOne->~Number();
+    Number::one->~Number();
+    Number::pi->~Number();
+    Number::e->~Number();
     Number::half->~Number();
+    Number::negOne->~Number();
     mpfr_free_cache();
+
+#ifdef NumberDebug
+    std::cout << '\n' << all << std::endl;
+#endif
+}
+
+Number Number::getFromString(std::string str){
+    Number num;
+    mpfr_set_str(num.value, &str[0], 10, MPFR_RNDN);
+    return num;
 }
 
 Number::Number(){
+#ifdef NumberDebug
+    id = ++count;
+    all++;
+    std::cout << "'" << id << "' " << std::flush;
+#endif
     mpfr_init2(value, *Number::defaultPrc);
     mpfr_set_zero(value, 1);
 }
 
 Number::~Number(){
+#ifdef NumberDebug
+    all--;
+    std::cout << "-" << id << "- " << std::flush;
+#endif
     mpfr_clear(value);
 }
 
 Number::Number(const Number &other){
-    this->value->_mpfr_d = other.value->_mpfr_d;
-    this->value->_mpfr_exp = other.value->_mpfr_exp;
-    this->value->_mpfr_prec = other.value->_mpfr_prec;
-    this->value->_mpfr_sign = other.value->_mpfr_sign;
+#ifdef NumberDebug
+    id = ++count;
+    all++;
+#endif
+    mpfr_init2(value, *Number::defaultPrc);
+    mpfr_set(value, other.value, MPFR_RNDN);
 }
 
 void Number::operator = (const Number &other){

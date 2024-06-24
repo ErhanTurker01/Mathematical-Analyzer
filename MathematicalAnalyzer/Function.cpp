@@ -2,7 +2,7 @@
 
 
 /*Calculates function given a input*/
-double Function::fun(Node *base, double x){
+Number Function::fun(Node *base, Number x){
     if(base->nodeType == NodeType::expr){
         if(base->value.has_value()) return base->value.value();
         else return fun(base->childs[0],x);
@@ -15,18 +15,18 @@ double Function::fun(Node *base, double x){
             case OprType::mult: return fun(base->childs[0],x) * fun(base->childs[1],x);
             case OprType::div: return fun(base->childs[0],x) / fun(base->childs[1],x);
             case OprType::sub: return fun(base->childs[0],x) - fun(base->childs[1],x);
-            case OprType::pow: return std::pow(fun(base->childs[0],x),fun(base->childs[1],x));
+            case OprType::pow: return fun(base->childs[0],x) ^ fun(base->childs[1],x);
         }
     }
     else if(base->nodeType == NodeType::fun){
         switch (base->funType.value()) {
-            case FunType::sin:return sin(fun(base->childs[0],x)); break;
-            case FunType::cos:return cos(fun(base->childs[0],x));break;
-            case FunType::ln:return log(fun(base->childs[0],x));break;
-            case FunType::abs:return fabs(fun(base->childs[0],x));break;
+            case FunType::sin:return fun(base->childs[0],x).sin(); break;
+            case FunType::cos:return fun(base->childs[0],x).cos();break;
+            case FunType::ln:return fun(base->childs[0],x).log(*Number::e);break;
+            case FunType::abs:return fun(base->childs[0],x).abs();break;
         }
     }
     else {
-        return 0;
+        return Number();
     }
 }

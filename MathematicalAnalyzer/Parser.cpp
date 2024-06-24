@@ -23,7 +23,7 @@ void Parser::parse(std::vector<Token> tokens, Node *base){
                 begin++;
             }
             else if(!(prc-plc) && token.type == TokenType::num){
-                base->childs.push_back(new Node({.nodeType = NodeType::num, .value = std::stod(token.value.value())}));
+                base->childs.push_back(new Node({.nodeType = NodeType::num, .value = Number::getFromString(token.value.value())}));
                 begin++;
             }
             else if(!(prc-plc) && token.type == TokenType::var){
@@ -164,7 +164,7 @@ void Parser::resolveTree(Node *base){
             return;
         }
         else if(childs[0]->oprType == OprType::sub){
-            childs.insert(childs.begin(), new Node({.nodeType = NodeType::num, .value = 0}));
+            childs.insert(childs.begin(), new Node({.nodeType = NodeType::num, .value = Number()}));
             resolveTree(base);
             return;
         }
@@ -189,7 +189,7 @@ void Parser::resolveTree(Node *base){
             }
         }
         else if(childs[0]->oprType == OprType::sub){
-            childs.insert(childs.begin(), new Node({.nodeType = NodeType::num, .value = 0}));
+            childs.insert(childs.begin(), new Node({.nodeType = NodeType::num, .value = Number()}));
             resolveTree(base);
             return;
         }
@@ -221,13 +221,13 @@ void Parser::resolveTree(Node *base){
         }
         if(childs[0]->nodeType == NodeType::opr && childs[0]->oprType == OprType::sub){
             if(childs[1]->nodeType == NodeType::num){
-                childs[1]->value.value() *=-1;
+                childs[1]->value.value() *= *Number::negOne;
                 delete childs[0];
                 childs.erase(childs.begin());
             }
             else if(childs[1]->nodeType == NodeType::expr){
                 childs[1]->childs.push_back(childs[0]);
-                childs[0]->childs.push_back(new Node({.nodeType = NodeType::num, .value = 0}));
+                childs[0]->childs.push_back(new Node({.nodeType = NodeType::num, .value = Number()}));
                 childs[0]->childs.push_back(childs[1]->childs[0]);
                 childs.erase(childs.begin());
             }
@@ -265,11 +265,35 @@ void Parser::resolveTree(Node *base){
     simplfyTree(base);
 }
 
+Node* Parser::parse(std::vector<Token> tokens){
+    src = tokens;
+    start = new Node({.nodeType = NodeType::expr});
+    parse(src,start);
+    return start->childs[0];
+}
+
+Node* Parser::parse(){
+    parse(src,start);
+    return start->childs[0];
+}
+
+void Parser::addFunction(std::string name, Node* expr){
+    functionNames.push_back(name);functionExprs.push_back(expr);
+}
+
+void Parser::addVariable(std::string name, Node* val){
+    variableNames.push_back(name);variableValues.push_back(simplfyTree(val)->value.value());
+}
+
+Parser::Parser(std::vector<Token> tokens):
+    src(tokens), start(new Node({.nodeType = NodeType::expr})){
+    
+}
 
 Node* Parser::simplfyTree(Node* base){
     if(isTreeConstant(base)){
         Function fun(base,"");
-        base = new Node({.nodeType = NodeType::num, .value = fun(0)});
+        base = new Node({.nodeType = NodeType::num, .value = fun(Number())});
     }
     return base;
 }
@@ -283,8 +307,8 @@ bool Parser::isTreeConstant(Node* base){
 Node* Parser::applyDerivative(Node* base){
     std::vector<Node*>& childs = base->childs;
     if(base->nodeType == NodeType::expr) return new Node(*applyDerivative(childs[0]));
-    else if(base->nodeType == NodeType::num) return new Node({.nodeType = NodeType::num, .value = 0});
-    else if(base->nodeType == NodeType::var) return new Node({.nodeType = NodeType::num, .value = 1});
+    else if(base->nodeType == NodeType::num) return new Node({.nodeType = NodeType::num, .value = Number()});
+    else if(base->nodeType == NodeType::var) return new Node({.nodeType = NodeType::num, .value = *Number::one});
     else if(base->nodeType == NodeType::opr){
         switch (base->oprType.value()) {
             case OprType::add:
@@ -404,7 +428,7 @@ Node* Parser::applyDerivative(Node* base){
                 *expr1 = new Node({.nodeType = NodeType::expr}),
                 *expr2 = new Node({.nodeType = NodeType::expr}),
                 *expr3 = new Node({.nodeType = NodeType::expr}),
-                *one = new Node({.nodeType =  NodeType::num, .value = -1});
+                *one = new Node({.nodeType =  NodeType::num, .value = *Number::negOne});
                 expr1->childs.push_back(mult1);
                 mult1->childs.push_back(one);
                 mult1->childs.push_back(expr2);

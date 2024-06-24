@@ -34,7 +34,15 @@ int main() {
             }
             case LineType::showFunVal:
             {
-                for (Function fun : functions) if(fun.getName() == line.getFunName()) std::cout << line.getFunName() << "(" << line.getFunVal() << ") = " << fun(line.getFunVal()) << std::endl;
+                for (Function fun : functions){
+                    if(fun.getName() == line.getFunName()){
+                        std::cout << line.getFunName() << "(" << std::flush;
+                        line.getFunVal().print();
+                        std::cout << ") = " << std::flush;
+                        fun(line.getFunVal()).print();
+                        std::cout << std::endl;
+                    }
+                }
                 break;
             }
             case LineType::showVal:

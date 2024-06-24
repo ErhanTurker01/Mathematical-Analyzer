@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "Parser.hpp"
+#include "Number.hpp"
 
 #ifndef Function_hpp
 #define Function_hpp
@@ -16,11 +17,11 @@ class Function{
     std::string name;
 public:
     Function(Node* src, std::string name):src(src),name(name) {}
-    double operator ()(double x){return fun(src,x);}
+    Number operator ()(Number x){return fun(src,x);}
     std::string getName(){return name;}
     
 private:
-    double fun(Node* base, double x);
+    Number fun(Node* base, Number x);
 };
 
 

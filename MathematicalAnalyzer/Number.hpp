@@ -10,11 +10,19 @@
 #ifndef Number_hpp
 #define Number_hpp
 
+
+
 struct Number{
     static const inline mpfr_prec_t* defaultPrc = new mpfr_prec_t;
     static const inline Number *e, *two, *ten, *pi, *one, *half, *negOne;
     static void init(const mpfr_prec_t &prc = 20);
     static void deInit();
+    static Number getFromString(std::string str);
+#ifdef NumberDebug
+    static inline int count = 0;
+    int id;
+    static inline int all = 0;
+#endif
     
     mpfr_t value;
     Number();
@@ -42,7 +50,7 @@ struct Number{
     void cosSelf();
     Number sin() const;
     void sinSelf();
-    void print(mpfr_prec_t decimal);
+    void print(mpfr_prec_t decimal = 3);
 };
 
 struct ComplexNumber{
