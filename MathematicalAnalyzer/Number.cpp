@@ -72,6 +72,7 @@ Number::Number(const Number &other){
 #ifdef NumberDebug
     id = ++count;
     all++;
+    std::cout << "'" << id << "' " << std::flush;
 #endif
     mpfr_init2(value, *Number::defaultPrc);
     mpfr_set(value, other.value, MPFR_RNDN);

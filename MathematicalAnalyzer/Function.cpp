@@ -2,7 +2,7 @@
 
 
 /*Calculates function given a input*/
-Number Function::fun(Node *base, Number x){
+Number Function::fun(Node *base, const Number &x){
     if(base->nodeType == NodeType::expr){
         if(base->value.has_value()) return base->value.value();
         else return fun(base->childs[0],x);
@@ -11,19 +11,55 @@ Number Function::fun(Node *base, Number x){
     else if(base->nodeType == NodeType::var) return x;
     else if(base->nodeType == NodeType::opr) {
         switch (base->oprType.value()) {
-            case OprType::add: return fun(base->childs[0],x) + fun(base->childs[1],x);
-            case OprType::mult: return fun(base->childs[0],x) * fun(base->childs[1],x);
-            case OprType::div: return fun(base->childs[0],x) / fun(base->childs[1],x);
-            case OprType::sub: return fun(base->childs[0],x) - fun(base->childs[1],x);
-            case OprType::pow: return fun(base->childs[0],x) ^ fun(base->childs[1],x);
+            case OprType::add:{
+                Number num = fun(base->childs[0],x);
+                num += fun(base->childs[1],x);
+                return num;
+            }
+            case OprType::mult:{
+                Number num = fun(base->childs[0],x);
+                num *= fun(base->childs[1],x);
+                return num;
+            }
+            case OprType::div:{
+                Number num = fun(base->childs[0],x);
+                num /= fun(base->childs[1],x);
+                return num;
+            }
+            case OprType::sub:{
+                Number num = fun(base->childs[0],x);
+                num -= fun(base->childs[1],x);
+                return num;
+            }
+            case OprType::pow:{
+                Number num = fun(base->childs[0],x);
+                num ^= fun(base->childs[1],x);
+                return num;
+            }
         }
     }
     else if(base->nodeType == NodeType::fun){
         switch (base->funType.value()) {
-            case FunType::sin:return fun(base->childs[0],x).sin(); break;
-            case FunType::cos:return fun(base->childs[0],x).cos();break;
-            case FunType::ln:return fun(base->childs[0],x).log(*Number::e);break;
-            case FunType::abs:return fun(base->childs[0],x).abs();break;
+            case FunType::sin:{
+                Number num = fun(base->childs[0],x);
+                num.sinSelf();
+                return num;
+            }
+            case FunType::cos:{
+                Number num = fun(base->childs[0],x);
+                num.cosSelf();
+                return num;
+            }
+            case FunType::ln:{
+                Number num = fun(base->childs[0],x);
+                num.logSelf(*Number::e);
+                return num;
+            }
+            case FunType::abs:{
+                Number num = fun(base->childs[0],x);
+                num.absSelf();
+                return num;
+            }
         }
     }
     else {

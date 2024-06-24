@@ -57,6 +57,4 @@ int main() {
     }/* End of lines */
     Number::deInit();
     return 0;
-    
-    
 }

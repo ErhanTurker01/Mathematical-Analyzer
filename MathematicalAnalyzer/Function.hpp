@@ -17,11 +17,11 @@ class Function{
     std::string name;
 public:
     Function(Node* src, std::string name):src(src),name(name) {}
-    Number operator ()(Number x){return fun(src,x);}
+    Number operator ()(const Number &x){return fun(src,x);}
     std::string getName(){return name;}
     
 private:
-    Number fun(Node* base, Number x);
+    Number fun(Node* base, const Number &x);
 };
 
 
