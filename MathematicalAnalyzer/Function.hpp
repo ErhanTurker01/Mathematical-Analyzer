@@ -4,6 +4,7 @@
 #include <optional>
 #include <vector>
 #include <string>
+#include <memory>
 #include "Node.hpp"
 #include "Number.hpp"
 
@@ -13,16 +14,16 @@
 using namespace functionNode;
 
 class Function{
-    Node* src;
+    std::shared_ptr<Node> src;
     std::string name;
     
 private:
-    Number operator ()(const Number &x, Node *base);
+    Number operator ()(const Number &x, std::shared_ptr<Node> base);
     
 public:
-    Function(Node* src, std::string name):src(src),name(name) {}
+    Function(std::shared_ptr<Node> src, std::string name):src(src),name(name) {}
     Number operator ()(const Number &x);
-    Node* getSource();
+    std::shared_ptr<Node> getSource();
     const std::string& getName();
 };
 

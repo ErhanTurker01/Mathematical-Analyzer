@@ -4,7 +4,7 @@
 
 using namespace functionNode;
 /*From tokens creates a tree with necessary nodes*/
-void Parser::parse(std::vector<Token> tokens, Node *base){
+void Parser::parse(std::vector<Token> tokens, std::shared_ptr<Node> base){
     {
         int prc = 0, plc = 0,begin = 0;
         for(int end=0;end<tokens.size();end++){
@@ -12,41 +12,41 @@ void Parser::parse(std::vector<Token> tokens, Node *base){
             if(token.type == TokenType::pl) plc++;
             if(token.type == TokenType::pr) prc++;
             if(prc == plc && (plc+prc)){
-                base->childs.push_back(new Node({.nodeType = NodeType::expr}));
+                base->childs.push_back(std::make_shared<Node>(Node({.nodeType = NodeType::expr})));
                 parse(std::vector<Token>(tokens.begin() + begin + 1, tokens.begin() + end), base->childs.back());
                 begin = end + 1;
                 prc = 0;
                 plc = 0;
             }
             else if(!(prc-plc) && token.type == TokenType::opr){
-                base->childs.push_back(new Node({.nodeType = NodeType::opr, .oprType = token.oprType}));
+                base->childs.push_back(std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = token.oprType})));
                 begin++;
             }
             else if(!(prc-plc) && token.type == TokenType::num){
-                Node* node = new Node();
+                std::shared_ptr<Node> node = std::make_shared<Node>();
                 node->nodeType = NodeType::num;
                 node->value = Number::getFromString(token.value.value());
                 base->childs.push_back(node);
                 begin++;
             }
             else if(!(prc-plc) && token.type == TokenType::var){
-                base->childs.push_back(new Node({.nodeType = NodeType::var}));
+                base->childs.push_back(std::make_shared<Node>(Node({.nodeType = NodeType::var})));
                 begin++;
             }
             else if(!(prc-plc) && token.type == TokenType::fun){
-                base->childs.push_back(new Node({.nodeType = NodeType::fun, .funType = token.funType}));
+                base->childs.push_back(std::make_shared<Node>(Node({.nodeType = NodeType::fun, .funType = token.funType})));
                 begin++;
             }
             else if(!(prc-plc) && token.type == TokenType::der){
-                base->childs.push_back(new Node({.nodeType = NodeType::der}));
+                base->childs.push_back(std::make_shared<Node>(Node({.nodeType = NodeType::der})));
                 begin++;
             }
             else if(!(prc-plc) && token.type == TokenType::other && isDefinedFunction(token.value.value())){
-                base->childs.push_back(new Node({.nodeType = NodeType::userFun, .name = token.value.value()}));
+                base->childs.push_back(std::make_shared<Node>(Node({.nodeType = NodeType::userFun, .name = token.value.value()})));
                 begin++;
             }
             else if(!(prc-plc) && token.type == TokenType::other && isDefinedVariable(token.value.value())){
-                base->childs.push_back(new Node({.nodeType = NodeType::userNum, .name = token.value.value()}));
+                base->childs.push_back(std::make_shared<Node>(Node({.nodeType = NodeType::userNum, .name = token.value.value()})));
                 begin++;
             }
         }
@@ -55,9 +55,9 @@ void Parser::parse(std::vector<Token> tokens, Node *base){
 }
 
 /*Result after parse function is not binary tree. This function takes that tree and makes it a binary tree for easier implementation*/
-void Parser::resolveTree(Node *base){
+void Parser::resolveTree(std::shared_ptr<Node> base){
     /*reference for later use*/
-    std::vector<Node*>& childs = base->childs;
+    std::vector<std::shared_ptr<Node>>& childs = base->childs;
     
     for(int i=0;i<childs.size();i++){
         if (childs[i]->nodeType == NodeType::userNum) {
@@ -83,9 +83,9 @@ void Parser::resolveTree(Node *base){
     for(int i=0;i<childs.size();i++){
         if(childs[i]->nodeType == NodeType::fun){
             if(childs[i+1] != NULL && childs[i+1]->nodeType == NodeType::expr){
-                Node* fun = childs[i];
-                Node* funexpr = childs[i+1];
-                Node* expr = new Node({.nodeType = NodeType::expr});
+                std::shared_ptr<Node> fun = childs[i];
+                std::shared_ptr<Node> funexpr = childs[i+1];
+                std::shared_ptr<Node> expr = std::make_shared<Node>(Node({.nodeType = NodeType::expr}));
                 fun->childs.push_back(funexpr);
                 childs.erase(childs.begin()+i, childs.begin()+i+2);
                 childs.insert(childs.begin()+i, expr);
@@ -101,10 +101,10 @@ void Parser::resolveTree(Node *base){
     for(int i=1;i<childs.size()-1;i++){
         if(childs[i]->nodeType == NodeType::opr && (childs[i]->oprType == OprType::pow)){
             if(childs[i+1]->nodeType != NodeType::opr && childs[i-1]->nodeType != NodeType::opr){
-                Node* expr = new Node({.nodeType = NodeType::expr});
-                Node* opr = childs[i];
-                Node* base = childs[i-1];
-                Node* power = childs[i+1];
+                std::shared_ptr<Node> expr = std::make_shared<Node>(Node({.nodeType = NodeType::expr}));
+                std::shared_ptr<Node> opr = childs[i];
+                std::shared_ptr<Node> base = childs[i-1];
+                std::shared_ptr<Node> power = childs[i+1];
                 opr->childs.push_back(base);
                 opr->childs.push_back(power);
                 expr->childs.push_back(opr);
@@ -122,7 +122,7 @@ void Parser::resolveTree(Node *base){
     for (int i=0; i<childs.size()-1; i++) {
         if(childs[i]->nodeType == NodeType::expr){
             if(childs[i+1]->nodeType == NodeType::expr || childs[i+1]->nodeType == NodeType::num || childs[i+1]->nodeType == NodeType::var){
-                childs.insert(childs.begin()+ ++i, new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}));
+                childs.insert(childs.begin()+ ++i, std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})));
             }
             else if(childs[i+1]->nodeType == NodeType::opr){}
             else{
@@ -131,7 +131,7 @@ void Parser::resolveTree(Node *base){
         }
         else if(childs[i]->nodeType == NodeType::num){
             if(childs[i+1]->nodeType == NodeType::expr || childs[i+1]->nodeType == NodeType::var){
-                childs.insert(childs.begin()+ ++i, new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}));
+                childs.insert(childs.begin()+ ++i, std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})));
             }
             else if(childs[i+1]->nodeType == NodeType::opr){}
             else{
@@ -140,7 +140,7 @@ void Parser::resolveTree(Node *base){
         }
         else if(childs[i]->nodeType == NodeType::var){
             if(childs[i+1]->nodeType == NodeType::expr){
-                childs.insert(childs.begin()+ ++i, new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}));
+                childs.insert(childs.begin()+ ++i, std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})));
             }
             else if(childs[i+1]->nodeType == NodeType::opr){}
             else{
@@ -151,9 +151,8 @@ void Parser::resolveTree(Node *base){
     
     for (int i=0; i<childs.size()-1; i++) {
         if (childs[i]->nodeType == NodeType::der) {
-            Node* der = childs[i];
+            std::shared_ptr<Node> der = childs[i];
             childs.erase(childs.begin()+i);
-            delete der;
             childs[i] = applyDerivative(childs[i]);
         }
     }
@@ -161,7 +160,7 @@ void Parser::resolveTree(Node *base){
     /*Rest of the function handles operations and recursively makes tree a binary tree*/
     if(childs.size() == 3){
         if(childs[0]->nodeType != NodeType::opr && childs[1]->oprType.has_value()){
-            Node* opr = childs[1];
+            std::shared_ptr<Node> opr = childs[1];
             opr->childs.push_back(base->childs[0]);
             opr->childs.push_back(base->childs[2]);
             childs.pop_back();
@@ -169,12 +168,11 @@ void Parser::resolveTree(Node *base){
             return;
         }
         else if(childs[0]->oprType == OprType::sub){
-            childs.insert(childs.begin(), new Node({.nodeType = NodeType::num, .value = Number()}));
+            childs.insert(childs.begin(), std::make_shared<Node>(Node({.nodeType = NodeType::num, .value = Number()})));
             resolveTree(base);
             return;
         }
         else if(childs[0]->oprType == OprType::add){
-            delete childs[0];
             childs.erase(childs.begin());
             resolveTree(base);
             return;
@@ -188,18 +186,17 @@ void Parser::resolveTree(Node *base){
                 childs.pop_back();
             }
             else{
-                childs.insert(childs.begin()+1, new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}));
+                childs.insert(childs.begin()+1, std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})));
                 resolveTree(base);
                 return;
             }
         }
         else if(childs[0]->oprType == OprType::sub){
-            childs.insert(childs.begin(), new Node({.nodeType = NodeType::num, .value = Number()}));
+            childs.insert(childs.begin(), std::make_shared<Node>(Node({.nodeType = NodeType::num, .value = Number()})));
             resolveTree(base);
             return;
         }
         else if(childs[0]->oprType == OprType::add){
-            delete childs[0];
             childs.erase(childs.begin());
             resolveTree(base);
             return;
@@ -221,18 +218,16 @@ void Parser::resolveTree(Node *base){
         if(childs[0]->nodeType == NodeType::opr && (childs[0]->oprType == OprType::mult || childs[0]->oprType == OprType::div)) throw "Operation needs expression";
         if(childs.back()->nodeType == NodeType::opr) throw "Operation needs expression";
         if(childs[0]->nodeType == NodeType::opr && childs[0]->oprType == OprType::add) {
-            delete childs[0];
             childs.erase(childs.begin());
         }
         if(childs[0]->nodeType == NodeType::opr && childs[0]->oprType == OprType::sub){
             if(childs[1]->nodeType == NodeType::num){
                 childs[1]->value.value() *= *Number::negOne;
-                delete childs[0];
                 childs.erase(childs.begin());
             }
             else if(childs[1]->nodeType == NodeType::expr){
                 childs[1]->childs.push_back(childs[0]);
-                childs[0]->childs.push_back(new Node({.nodeType = NodeType::num, .value = Number()}));
+                childs[0]->childs.push_back(std::make_shared<Node>(Node({.nodeType = NodeType::num, .value = Number()})));
                 childs[0]->childs.push_back(childs[1]->childs[0]);
                 childs.erase(childs.begin());
             }
@@ -240,7 +235,7 @@ void Parser::resolveTree(Node *base){
         for(int i=1;i<childs.size()-1;i++){
             if(childs[i]->nodeType == NodeType::opr && (childs[i]->oprType == OprType::mult || childs[i]->oprType == OprType::div)){
                 if(childs[i+1]->nodeType != NodeType::opr && childs[i-1]->nodeType != NodeType::opr){
-                    Node* expr = new Node({.nodeType = NodeType::expr});
+                    std::shared_ptr<Node> expr = std::make_shared<Node>(Node({.nodeType = NodeType::expr}));
                     for(int j=-1;j<=1;j++) expr->childs.push_back(childs[i+j]);
                     childs.insert(childs.begin()+i-1, expr);
                     childs.erase(childs.begin()+i,childs.begin()+i+3);
@@ -254,7 +249,7 @@ void Parser::resolveTree(Node *base){
         }
         for(int i=1;i<childs.size()-1;i++){
             if(childs[i+1]->nodeType != NodeType::opr && childs[i-1]->nodeType != NodeType::opr){
-                Node* expr = new Node({.nodeType = NodeType::expr});
+                std::shared_ptr<Node> expr = std::make_shared<Node>(Node({.nodeType = NodeType::expr}));
                 for(int j=-1;j<=1;j++) expr->childs.push_back(childs[i+j]);
                 childs.insert(childs.begin()+i-1, expr);
                 childs.erase(childs.begin()+i,childs.begin()+i+3);
@@ -270,23 +265,23 @@ void Parser::resolveTree(Node *base){
     simplfyTree(base);
 }
 
-Node* Parser::parse(std::vector<Token> tokens){
+std::shared_ptr<Node> Parser::parse(std::vector<Token> tokens){
     src = tokens;
-    start = new Node({.nodeType = NodeType::expr});
+    start = std::make_shared<Node>(Node({.nodeType = NodeType::expr}));
     parse(src,start);
     return start->childs[0];
 }
 
-Node* Parser::parse(){
+std::shared_ptr<Node> Parser::parse(){
     parse(src,start);
     return start->childs[0];
 }
 
-void Parser::addFunction(std::string name, Node* expr){
+void Parser::addFunction(std::string name, std::shared_ptr<Node> expr){
     functions.push_back(Function(expr, name));
 }
 
-void Parser::addVariable(std::string name, Node* val){
+void Parser::addVariable(std::string name, std::shared_ptr<Node> val){
     variableNames.push_back(name);variableValues.push_back(simplfyTree(val)->value.value());
 }
 
@@ -295,46 +290,46 @@ Parser::Parser(std::vector<Token> tokens):
     
 }
 
-Node* Parser::simplfyTree(Node* base){
+std::shared_ptr<Node> Parser::simplfyTree(std::shared_ptr<Node> base){
     if(isTreeConstant(base)){
         Function fun(base,"");
-        base = new Node({.nodeType = NodeType::num, .value = fun(Number())});
+        base = std::make_shared<Node>(Node({.nodeType = NodeType::num, .value = fun(Number())}));
     }
     return base;
 }
 
-bool Parser::isTreeConstant(Node* base){
+bool Parser::isTreeConstant(std::shared_ptr<Node> base){
     if (base->nodeType == NodeType::var) return false;
-    for (Node* child : base->childs) if(!isTreeConstant(child)) return false;
+    for (std::shared_ptr<Node> child : base->childs) if(!isTreeConstant(child)) return false;
     return true;
 }
 
-Node* Parser::applyDerivative(Node* base){
-    std::vector<Node*>& childs = base->childs;
-    if(base->nodeType == NodeType::expr) return new Node(*applyDerivative(childs[0]));
-    else if(base->nodeType == NodeType::num) return new Node({.nodeType = NodeType::num, .value = Number()});
-    else if(base->nodeType == NodeType::var) return new Node({.nodeType = NodeType::num, .value = *Number::one});
+std::shared_ptr<Node> Parser::applyDerivative(std::shared_ptr<Node> base){
+    std::vector<std::shared_ptr<Node>>& childs = base->childs;
+    if(base->nodeType == NodeType::expr) return std::make_shared<Node>(Node(*applyDerivative(childs[0])));
+    else if(base->nodeType == NodeType::num) return std::make_shared<Node>(Node({.nodeType = NodeType::num, .value = Number()}));
+    else if(base->nodeType == NodeType::var) return std::make_shared<Node>(Node({.nodeType = NodeType::num, .value = *Number::one}));
     else if(base->nodeType == NodeType::opr){
         switch (base->oprType.value()) {
             case OprType::add:
             case OprType::sub:
             {
-                Node* opr = new Node({.nodeType = NodeType::opr, .oprType = base->oprType.value()});
+                std::shared_ptr<Node> opr = std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = base->oprType.value()}));
                 opr->childs.push_back(applyDerivative(childs[0]));
                 opr->childs.push_back(applyDerivative(childs[1]));
                 return opr;
             }
             case OprType::mult:
             {
-                Node* opr = new Node({.nodeType = NodeType::opr, .oprType = OprType::add});
-                Node *expr1 = new Node({.nodeType = NodeType::expr}),
-                *expr2 = new Node({.nodeType = NodeType::expr}),
-                *mult1 = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
-                *mult2 = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
-                *left = new Node(*childs[0]),
-                *right = new Node(*childs[1]),
-                *derLeft = applyDerivative(left),
-                *derRight = applyDerivative(right);
+                std::shared_ptr<Node> opr = std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::add}));
+                std::shared_ptr<Node> expr1 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                expr2 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                mult1 = std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})),
+                mult2 = std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})),
+                left = std::make_shared<Node>(Node(*childs[0])),
+                right = std::make_shared<Node>(Node(*childs[1])),
+                derLeft = applyDerivative(left),
+                derRight = applyDerivative(right);
                 opr->childs.push_back(expr1);
                 opr->childs.push_back(expr2);
                 expr1->childs.push_back(mult1);
@@ -347,17 +342,17 @@ Node* Parser::applyDerivative(Node* base){
             }
             case OprType::div:
             {
-                Node* numerator = new Node({.nodeType = NodeType::expr});
+                std::shared_ptr<Node> numerator = std::make_shared<Node>(Node({.nodeType = NodeType::expr}));
                 {
-                    Node* opr = new Node({.nodeType = NodeType::opr, .oprType = OprType::sub});
-                    Node *expr1 = new Node({.nodeType = NodeType::expr}),
-                    *expr2 = new Node({.nodeType = NodeType::expr}),
-                    *mult1 = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
-                    *mult2 = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
-                    *left = new Node(*childs[0]),
-                    *right = new Node(*childs[1]),
-                    *derLeft = applyDerivative(left),
-                    *derRight = applyDerivative(right);
+                    std::shared_ptr<Node> opr = std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::sub}));
+                    std::shared_ptr<Node> expr1 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                    expr2 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                    mult1 = std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})),
+                    mult2 = std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})),
+                    left =  std::make_shared<Node>(Node(*childs[0])),
+                    right = std::make_shared<Node>(Node(*childs[1])),
+                    derLeft = applyDerivative(left),
+                    derRight = applyDerivative(right);
                     opr->childs.push_back(expr2);
                     opr->childs.push_back(expr1);
                     expr1->childs.push_back(mult1);
@@ -368,37 +363,37 @@ Node* Parser::applyDerivative(Node* base){
                     mult2->childs.push_back(right);
                     numerator->childs.push_back(opr);
                 }
-                Node* denominator = new Node({.nodeType = NodeType::expr});
-                denominator->childs.push_back(new Node({.nodeType = NodeType::opr, OprType::mult}));
-                denominator->childs[0]->childs.push_back(new Node(*childs[1]));
-                denominator->childs[0]->childs.push_back(new Node(*childs[1]));
-                Node* expr = new Node({.nodeType = NodeType::expr});
-                expr->childs.push_back(new Node({.nodeType = NodeType::opr, .oprType = OprType::div}));
+                std::shared_ptr<Node> denominator = std::make_shared<Node>(Node({.nodeType = NodeType::expr}));
+                denominator->childs.push_back(std::make_shared<Node>(Node({.nodeType = NodeType::opr, OprType::mult})));
+                denominator->childs[0]->childs.push_back(std::make_shared<Node>(Node(*childs[1])));
+                denominator->childs[0]->childs.push_back(std::make_shared<Node>(Node(*childs[1])));
+                std::shared_ptr<Node> expr = std::make_shared<Node>(Node({.nodeType = NodeType::expr}));
+                expr->childs.push_back(std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::div})));
                 expr->childs[0]->childs.push_back(numerator);
                 expr->childs[0]->childs.push_back(denominator);
                 return expr;
             }
             case OprType::pow:
-                Node* f1 = new Node(*childs[0]),
-                *f2 = new Node(*childs[0]),
-                *g1 = new Node(*childs[1]),
-                *fd = applyDerivative(childs[0]),
-                *gd = applyDerivative(childs[1]),
-                *add = new Node({.nodeType = NodeType::opr, .oprType = OprType::add}),
-                *mult1 = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
-                *mult2 = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
-                *mult3 = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
-                *div = new Node({.nodeType = NodeType::opr, .oprType = OprType::div}),
-                *absf = new Node({.nodeType = NodeType::fun, .funType = FunType::abs}),
-                *lnf = new Node({.nodeType = NodeType::fun, .funType = FunType::ln}),
-                *fdDfexpr = new Node({.nodeType = NodeType::expr}),
-                *fdtgexpr = new Node({.nodeType = NodeType::expr}),
-                *absfexpr = new Node({.nodeType = NodeType::expr}),
-                *lnexpr = new Node({.nodeType = NodeType::expr}),
-                *absexpr = new Node({.nodeType = NodeType::expr}),
-                *mlngdexpr = new Node({.nodeType = NodeType::expr}),
-                *sumexpr = new Node({.nodeType = NodeType::expr}),
-                *all = new Node({.nodeType = NodeType::expr});
+                std::shared_ptr<Node> f1 = std::make_shared<Node>(Node(*childs[0])),
+                f2 = std::make_shared<Node>(Node(*childs[0])),
+                g1 = std::make_shared<Node>(Node(*childs[1])),
+                fd = applyDerivative(childs[0]),
+                gd = applyDerivative(childs[1]),
+                add = std::make_shared<Node>( Node({.nodeType = NodeType::opr, .oprType = OprType::add})),
+                mult1 = std::make_shared<Node>( Node({.nodeType = NodeType::opr, .oprType = OprType::mult})),
+                mult2 = std::make_shared<Node>( Node({.nodeType = NodeType::opr, .oprType = OprType::mult})),
+                mult3 = std::make_shared<Node>( Node({.nodeType = NodeType::opr, .oprType = OprType::mult})),
+                div = std::make_shared<Node>( Node({.nodeType = NodeType::opr, .oprType = OprType::div})),
+                absf = std::make_shared<Node>( Node({.nodeType = NodeType::fun, .funType = FunType::abs})),
+                lnf = std::make_shared<Node>( Node({.nodeType = NodeType::fun, .funType = FunType::ln})),
+                fdDfexpr = std::make_shared<Node>( Node({.nodeType = NodeType::expr})),
+                fdtgexpr = std::make_shared<Node>( Node({.nodeType = NodeType::expr})),
+                absfexpr = std::make_shared<Node>( Node({.nodeType = NodeType::expr})),
+                lnexpr = std::make_shared<Node>( Node({.nodeType = NodeType::expr})),
+                absexpr = std::make_shared<Node>( Node({.nodeType = NodeType::expr})),
+                mlngdexpr = std::make_shared<Node>( Node({.nodeType = NodeType::expr})),
+                sumexpr = std::make_shared<Node>( Node({.nodeType = NodeType::expr})),
+                all = std::make_shared<Node>( Node({.nodeType = NodeType::expr}));
                 sumexpr->childs.push_back(add);
                 add->childs.push_back(fdtgexpr);
                 fdtgexpr->childs.push_back(mult1);
@@ -426,14 +421,14 @@ Node* Parser::applyDerivative(Node* base){
         switch (base->funType.value()) {
             case FunType::cos:
             {
-                Node* sin = new Node({.nodeType = NodeType::fun, .funType = FunType::sin}),
-                *d = applyDerivative(base->childs[0]),
-                *mult1 = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
-                *mult2 = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
-                *expr1 = new Node({.nodeType = NodeType::expr}),
-                *expr2 = new Node({.nodeType = NodeType::expr}),
-                *expr3 = new Node({.nodeType = NodeType::expr}),
-                *one = new Node({.nodeType =  NodeType::num, .value = *Number::negOne});
+                std::shared_ptr<Node> sin = std::make_shared<Node>(Node({.nodeType = NodeType::fun, .funType = FunType::sin})),
+                d = applyDerivative(base->childs[0]),
+                mult1 = std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})),
+                mult2 = std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})),
+                expr1 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                expr2 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                expr3 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                one = std::make_shared<Node>(Node({.nodeType =  NodeType::num, .value = *Number::negOne}));
                 expr1->childs.push_back(mult1);
                 mult1->childs.push_back(one);
                 mult1->childs.push_back(expr2);
@@ -441,46 +436,46 @@ Node* Parser::applyDerivative(Node* base){
                 mult2->childs.push_back(d);
                 mult2->childs.push_back(expr3);
                 expr3->childs.push_back(sin);
-                sin->childs.push_back(new Node(*base->childs[0]));
+                sin->childs.push_back(std::make_shared<Node>(Node(*base->childs[0])));
                 return expr1;
             }
             case FunType::sin:
             {
-                Node* cos = new Node({.nodeType = NodeType::fun, .funType = FunType::cos}),
-                *d = applyDerivative(base->childs[0]),
-                *mult = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
-                *expr1 = new Node({.nodeType = NodeType::expr}),
-                *expr2 = new Node({.nodeType = NodeType::expr});
+                std::shared_ptr<Node> cos = std::make_shared<Node>(Node({.nodeType = NodeType::fun, .funType = FunType::cos})),
+                d = applyDerivative(base->childs[0]),
+                mult =  std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})),
+                expr1 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                expr2 = std::make_shared<Node>(Node({.nodeType = NodeType::expr}));
                 expr1->childs.push_back(mult);
                 mult->childs.push_back(d);
                 mult->childs.push_back(expr2);
                 expr2->childs.push_back(cos);
-                cos->childs.push_back(new Node(*base->childs[0]));
+                cos->childs.push_back(std::make_shared<Node>(Node(*base->childs[0])));
                 return expr1;
             }
             case FunType::ln:
             {
-                Node* expr = new Node({.nodeType = NodeType::expr}),
-                *div = new Node({.nodeType = NodeType::opr, .oprType = OprType::div}),
-                *d = applyDerivative(base->childs[0]);
+                std::shared_ptr<Node> expr = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                div = std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::div})),
+                d = applyDerivative(base->childs[0]);
                 expr->childs.push_back(div);
                 div->childs.push_back(d);
-                div->childs.push_back(new Node(*base->childs[0]));
+                div->childs.push_back(std::make_shared<Node>(Node(*base->childs[0])));
                 return expr;
             }
             case FunType::abs:
             {
-                Node* abs = new Node({.nodeType = NodeType::fun, .funType = FunType::abs}),
-                *expr1 = new Node({.nodeType = NodeType::expr}),
-                *expr2 = new Node({.nodeType = NodeType::expr}),
-                *expr3 = new Node({.nodeType = NodeType::expr}),
-                *expr4 = new Node({.nodeType = NodeType::expr}),
-                *expr5 = new Node({.nodeType = NodeType::expr}),
-                *mult = new Node({.nodeType = NodeType::opr, .oprType = OprType::mult}),
-                *div = new Node({.nodeType = NodeType::opr, .oprType = OprType::div}),
-                *f1 = new Node(*base->childs[0]),
-                *f2 = new Node(*base->childs[0]),
-                *d = applyDerivative(base->childs[0]);
+                std::shared_ptr<Node> abs = std::make_shared<Node>(Node({.nodeType = NodeType::fun, .funType = FunType::abs})),
+                expr1 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                expr2 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                expr3 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                expr4 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                expr5 = std::make_shared<Node>(Node({.nodeType = NodeType::expr})),
+                mult =  std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::mult})),
+                div =   std::make_shared<Node>(Node({.nodeType = NodeType::opr, .oprType = OprType::div})),
+                f1 =    std::make_shared<Node>(Node(*base->childs[0])),
+                f2 =    std::make_shared<Node>(Node(*base->childs[0])),
+                d = applyDerivative(base->childs[0]);
                 expr1->childs.push_back(mult);
                 mult->childs.push_back(d);
                 mult->childs.push_back(expr2);
@@ -498,27 +493,26 @@ Node* Parser::applyDerivative(Node* base){
     return nullptr;
 }
 
-Node* Parser::copyParseTree(Node* base){
-    Node* newBase = new Node(*base);
-    for(uint8_t i=0;i<base->childs.size();i++) newBase->childs[i] = (new Node(*copyParseTree(base->childs[i])));
+std::shared_ptr<Node> Parser::copyParseTree(std::shared_ptr<Node> base){
+    std::shared_ptr<Node> newBase = std::make_shared<Node>(Node(*base));
+    for(uint8_t i=0;i<base->childs.size();i++) newBase->childs[i] = (std::make_shared<Node>(Node(*copyParseTree(base->childs[i]))));
     return newBase;
 }
 
-void Parser::findEveryVariable(Node* base, std::vector<Node*>& vars){
+void Parser::findEveryVariable(std::shared_ptr<Node> base, std::vector<std::shared_ptr<Node>>& vars){
     if (base->nodeType == NodeType::var) vars.push_back(base);
-    for (Node* &child : base->childs) findEveryVariable(child, vars);
+    for (std::shared_ptr<Node> &child : base->childs) findEveryVariable(child, vars);
 }
 
-Node* Parser::changeEveryVariableWith(Node* base, Node* expr){
-    std::vector<Node*> vars;
+std::shared_ptr<Node> Parser::changeEveryVariableWith(std::shared_ptr<Node> base, std::shared_ptr<Node> expr){
+    std::vector<std::shared_ptr<Node>> vars;
     findEveryVariable(base, vars);
-    for (Node* var : vars) *var = *copyParseTree(expr);
+    for (std::shared_ptr<Node> var : vars) *var = *copyParseTree(expr);
     return base;
 }
 
-void Parser::deleteTree(Node* base){
-    for (Node* child : base->childs) deleteTree(child);
-    delete base;
+void Parser::deleteTree(std::shared_ptr<Node> base){
+    for (std::shared_ptr<Node> child : base->childs) deleteTree(child);
 }
 
 bool Parser::isDefinedFunction(std::string name){

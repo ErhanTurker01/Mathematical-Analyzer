@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <optional>
+#include <memory>
 #include "Tokenizer.hpp"
 #include "Number.hpp"
 
@@ -27,12 +28,17 @@ enum class NodeType{
 };
 
 struct Node{
+    
+    static inline int count = 0;
+    int id;
+    static inline int all = 0;
+    
     NodeType nodeType;
     std::optional<OprType> oprType;
     std::optional<FunType> funType;
     std::optional<Number> value;
     std::optional<std::string> name;
-    std::vector<Node*> childs;
+    std::vector<std::shared_ptr<Node>> childs;
 };
 }
 

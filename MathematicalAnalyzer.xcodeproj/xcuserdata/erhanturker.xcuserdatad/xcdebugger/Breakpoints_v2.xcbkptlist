@@ -14,8 +14,8 @@
             filePath = "MathematicalAnalyzer/Parser.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "534"
-            endingLineNumber = "534"
+            startingLineNumber = "528"
+            endingLineNumber = "528"
             landmarkName = "Parser::showFunctionCalculation(funName, num, prec)"
             landmarkType = "7">
             <Locations>
@@ -78,8 +78,8 @@
             filePath = "MathematicalAnalyzer/Parser.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "Parser::parse(tokens)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "MathematicalAnalyzer/Parser.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "Parser::parse(tokens)"
             landmarkType = "7">
          </BreakpointContent>
@@ -177,6 +177,22 @@
             endingLineNumber = "26"
             landmarkName = "Parser::parse(tokens, base)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2D22183E-5CF4-4F0A-B3CA-59A0CB104A11"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MathematicalAnalyzer/main.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "main()"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

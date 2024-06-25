@@ -2,7 +2,7 @@
 
 
 /*Calculates function given a input*/
-Number Function::operator()(const Number &x, Node *base){
+Number Function::operator()(const Number &x, std::shared_ptr<Node> base){
     if(base->nodeType == NodeType::expr){
         if(base->value.has_value()) return base->value.value();
         else return this->operator()(x,base->childs[0]);
@@ -71,7 +71,7 @@ Number Function::operator ()(const Number &x){
     return this->operator()(x, src);
 }
 
-Node* Function::getSource(){
+std::shared_ptr<Node> Function::getSource(){
     return src;
 }
 
