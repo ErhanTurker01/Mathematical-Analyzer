@@ -2,38 +2,38 @@
 
 
 /*Calculates function given a input*/
-Number Function::fun(Node *base, const Number &x){
+Number Function::operator()(const Number &x, Node *base){
     if(base->nodeType == NodeType::expr){
         if(base->value.has_value()) return base->value.value();
-        else return fun(base->childs[0],x);
+        else return this->operator()(x,base->childs[0]);
     }
     else if(base->nodeType == NodeType::num) return base->value.value();
     else if(base->nodeType == NodeType::var) return x;
     else if(base->nodeType == NodeType::opr) {
         switch (base->oprType.value()) {
             case OprType::add:{
-                Number num = fun(base->childs[0],x);
-                num += fun(base->childs[1],x);
+                Number num = this->operator()(x,base->childs[0]);
+                num += this->operator()(x,base->childs[1]);
                 return num;
             }
             case OprType::mult:{
-                Number num = fun(base->childs[0],x);
-                num *= fun(base->childs[1],x);
+                Number num = this->operator()(x,base->childs[0]);
+                num *= this->operator()(x,base->childs[1]);
                 return num;
             }
             case OprType::div:{
-                Number num = fun(base->childs[0],x);
-                num /= fun(base->childs[1],x);
+                Number num = this->operator()(x,base->childs[0]);
+                num /= this->operator()(x,base->childs[1]);
                 return num;
             }
             case OprType::sub:{
-                Number num = fun(base->childs[0],x);
-                num -= fun(base->childs[1],x);
+                Number num = this->operator()(x,base->childs[0]);
+                num -= this->operator()(x,base->childs[1]);
                 return num;
             }
             case OprType::pow:{
-                Number num = fun(base->childs[0],x);
-                num ^= fun(base->childs[1],x);
+                Number num = this->operator()(x,base->childs[0]);
+                num ^= this->operator()(x,base->childs[1]);
                 return num;
             }
         }
@@ -41,22 +41,22 @@ Number Function::fun(Node *base, const Number &x){
     else if(base->nodeType == NodeType::fun){
         switch (base->funType.value()) {
             case FunType::sin:{
-                Number num = fun(base->childs[0],x);
+                Number num = this->operator()(x,base->childs[0]);
                 num.sinSelf();
                 return num;
             }
             case FunType::cos:{
-                Number num = fun(base->childs[0],x);
+                Number num = this->operator()(x,base->childs[0]);
                 num.cosSelf();
                 return num;
             }
             case FunType::ln:{
-                Number num = fun(base->childs[0],x);
+                Number num = this->operator()(x,base->childs[0]);
                 num.logSelf(*Number::e);
                 return num;
             }
             case FunType::abs:{
-                Number num = fun(base->childs[0],x);
+                Number num = this->operator()(x,base->childs[0]);
                 num.absSelf();
                 return num;
             }
@@ -65,4 +65,16 @@ Number Function::fun(Node *base, const Number &x){
     else {
         return Number();
     }
+}
+
+Number Function::operator ()(const Number &x){
+    return this->operator()(x, src);
+}
+
+Node* Function::getSource(){
+    return src;
+}
+
+const std::string& Function::getName(){
+    return name;
 }

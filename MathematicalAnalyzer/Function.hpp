@@ -4,7 +4,7 @@
 #include <optional>
 #include <vector>
 #include <string>
-#include "Parser.hpp"
+#include "Node.hpp"
 #include "Number.hpp"
 
 #ifndef Function_hpp
@@ -15,13 +15,15 @@ using namespace functionNode;
 class Function{
     Node* src;
     std::string name;
-public:
-    Function(Node* src, std::string name):src(src),name(name) {}
-    Number operator ()(const Number &x){return fun(src,x);}
-    std::string getName(){return name;}
     
 private:
-    Number fun(Node* base, const Number &x);
+    Number operator ()(const Number &x, Node *base);
+    
+public:
+    Function(Node* src, std::string name):src(src),name(name) {}
+    Number operator ()(const Number &x);
+    Node* getSource();
+    const std::string& getName();
 };
 
 

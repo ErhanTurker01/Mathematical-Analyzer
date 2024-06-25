@@ -23,7 +23,10 @@ void Parser::parse(std::vector<Token> tokens, Node *base){
                 begin++;
             }
             else if(!(prc-plc) && token.type == TokenType::num){
-                base->childs.push_back(new Node({.nodeType = NodeType::num, .value = Number::getFromString(token.value.value())}));
+                Node* node = new Node();
+                node->nodeType = NodeType::num;
+                node->value = Number::getFromString(token.value.value());
+                base->childs.push_back(node);
                 begin++;
             }
             else if(!(prc-plc) && token.type == TokenType::var){
@@ -65,8 +68,10 @@ void Parser::resolveTree(Node *base){
         }
         else if(childs[i]->nodeType == NodeType::userFun){
             int funIndex;
-            for (funIndex=0; childs[i]->name.value() != functionNames[funIndex]; funIndex++);
-            if(i+1<childs.size()) childs[i] = changeEveryVariableWith(copyParseTree(functionExprs[funIndex]), childs[i+1]);
+            for (funIndex=0; childs[i]->name.value() != functions[funIndex].getName(); funIndex++);
+            if(i+1<childs.size()){
+                childs[i] = changeEveryVariableWith(copyParseTree(functions[funIndex].getSource()), childs[i+1]);
+            }
             else throw "NO EXPR";
             childs.erase(childs.begin()+ ++i);
         }
@@ -278,7 +283,7 @@ Node* Parser::parse(){
 }
 
 void Parser::addFunction(std::string name, Node* expr){
-    functionNames.push_back(name);functionExprs.push_back(expr);
+    functions.push_back(Function(expr, name));
 }
 
 void Parser::addVariable(std::string name, Node* val){
@@ -493,8 +498,6 @@ Node* Parser::applyDerivative(Node* base){
     return nullptr;
 }
 
-
-
 Node* Parser::copyParseTree(Node* base){
     Node* newBase = new Node(*base);
     for(uint8_t i=0;i<base->childs.size();i++) newBase->childs[i] = (new Node(*copyParseTree(base->childs[i])));
@@ -516,4 +519,24 @@ Node* Parser::changeEveryVariableWith(Node* base, Node* expr){
 void Parser::deleteTree(Node* base){
     for (Node* child : base->childs) deleteTree(child);
     delete base;
+}
+
+bool Parser::isDefinedFunction(std::string name){
+    return true;
+}
+
+bool Parser::isDefinedVariable(std::string name){
+    return std::find(variableNames.begin(), variableNames.end(), name) != variableNames.end();
+}
+
+void Parser::showFunctionCalculation(std::string funName, const Number& num, mpfr_prec_t prec){
+    for (Function& fun : functions){
+        if(fun.getName() == funName){
+            std::cout << funName << "(" << std::flush;
+            num.print();
+            std::cout << ") = " << std::flush;
+            fun(num).print();
+            std::cout << std::endl;
+        }
+    }
 }

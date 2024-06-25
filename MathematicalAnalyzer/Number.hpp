@@ -51,7 +51,7 @@ struct Number{
     void cosSelf();
     Number sin() const;
     void sinSelf();
-    void print(mpfr_prec_t decimal = 3);
+    void print(mpfr_prec_t decimal = 3) const;
 };
 
 struct ComplexNumber{

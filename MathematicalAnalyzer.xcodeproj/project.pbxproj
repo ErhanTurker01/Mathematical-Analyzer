@@ -32,6 +32,7 @@
 		8F5EDDBF2C1D01080046A349 /* Number.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Number.cpp; sourceTree = "<group>"; };
 		8F5EDDC02C1D01080046A349 /* Number.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Number.hpp; sourceTree = "<group>"; };
 		8F5EDDC32C1D02320046A349 /* libmpfr.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpfr.6.dylib; path = ../../../../../opt/homebrew/Cellar/mpfr/4.2.1/lib/libmpfr.6.dylib; sourceTree = "<group>"; };
+		8F5EDDC62C2A2BC90046A349 /* Node.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
 		8FAFAFB62B8E5B4F00723D0B /* Line.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Line.cpp; sourceTree = "<group>"; };
 		8FAFAFB72B8E5B4F00723D0B /* Line.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
 		8FFBA0752B2CC3AE005A7AC1 /* MathematicalAnalyzer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MathematicalAnalyzer; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +96,7 @@
 				8FAFAFB72B8E5B4F00723D0B /* Line.hpp */,
 				8F5EDDBF2C1D01080046A349 /* Number.cpp */,
 				8F5EDDC02C1D01080046A349 /* Number.hpp */,
+				8F5EDDC62C2A2BC90046A349 /* Node.hpp */,
 			);
 			path = MathematicalAnalyzer;
 			sourceTree = "<group>";
