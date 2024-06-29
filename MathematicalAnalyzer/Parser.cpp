@@ -546,3 +546,86 @@ void Parser::showFunctionCalculation(std::string funName, const Number& num, mpf
         }
     }
 }
+
+void Parser::showVariableValue(std::string varName, mpfr_prec_t prec){
+    for (auto& var : variables) {
+        if(var.getName() == varName){
+            std::cout << varName << " = ";
+            var.getValue().print(prec);
+            std::cout << '\n';
+        }
+    }
+}
+
+void Parser::showFunction(std::string funName){
+    for (auto& fun : functions) {
+        if(fun.getName() == funName){
+            showFunctionImpl(fun.getSource());
+            std::cout << std::endl;
+            break;
+        }
+    }
+}
+
+void Parser::showFunctionImpl(std::shared_ptr<Node> base){
+    switch (base.get()->nodeType) {
+        case NodeType::expr:
+            std::cout << "(";
+            showFunctionImpl(base.get()->childs[0]);
+            std::cout << ")";
+            break;
+        case NodeType::num:
+            base.get()->value.value().print();
+            break;
+        case NodeType::opr:
+            showFunctionImpl(base.get()->childs[0]);
+            std::cout << " ";
+            switch (base.get()->oprType.value()) {
+                case OprType::add:
+                    std::cout << "+ ";
+                    break;
+                case OprType::sub:
+                    std::cout << "- ";
+                    break;
+                case OprType::mult:
+                    std::cout << "* ";
+                    break;
+                case OprType::div:
+                    std::cout << "/ ";
+                    break;
+                case OprType::pow:
+                    std::cout << "^ ";
+                    break;
+            }
+            showFunctionImpl(base.get()->childs[1]);
+            break;
+        case NodeType::var:
+            std::cout << "x";
+            break;
+        case NodeType::fun:
+            switch (base.get()->funType.value()) {
+                case FunType::sin:
+                    std::cout << "sin";
+                    break;
+                case FunType::cos:
+                    std::cout << "cos";
+                    break;
+                case FunType::ln:
+                    std::cout << "ln";
+                    break;
+                case FunType::abs:
+                    std::cout << "abs";
+                    break;
+
+            }
+            showFunctionImpl(base.get()->childs[0]);
+            break;
+        case NodeType::userFun:
+            std::cout << base.get()->name.value();
+            showFunctionImpl(base.get()->childs[0]);
+        case NodeType::der:
+            break;
+        case NodeType::userNum:
+            break;
+    }
+}

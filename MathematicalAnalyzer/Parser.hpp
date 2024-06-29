@@ -31,7 +31,7 @@ private:
     bool isDefinedVariable(std::string name);
     void findEveryVariable(std::shared_ptr<Node> base, std::vector<std::shared_ptr<Node>>& vars);
     std::shared_ptr<Node> changeEveryVariableWith(std::shared_ptr<Node> base, std::shared_ptr<Node> expr);
-    void deleteTree(std::shared_ptr<Node> base);
+    void showFunctionImpl(std::shared_ptr<Node> base);
 public:
     Parser(){}
     std::shared_ptr<Node> parse();
@@ -40,6 +40,8 @@ public:
     void addVariable(std::string name, std::shared_ptr<Node> val);
     Parser(std::vector<Token> tokens);
     void showFunctionCalculation(std::string funName, const Number& num, mpfr_prec_t prec = 3);
+    void showVariableValue(std::string varName, mpfr_prec_t prec = 3);
+    void showFunction(std::string funName);
 };
 
 

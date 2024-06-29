@@ -9,7 +9,7 @@
 
 #ifndef Number_hpp
 #define Number_hpp
-#define NumberDebug
+//#define NumberDebug
 
 
 

@@ -22,7 +22,8 @@ int main() {
             switch (line.getLineType()) {
                 case LineType::varDef:
                 {
-                    parser.addVariable(line.getVarName(), parser.parse(Tokenizer(line.getVarVal()).tokenize()));
+                    parser.addVariable(line.getVarName(),
+                                       parser.parse(Tokenizer(line.getVarVal()).tokenize()));
                     break;
                 }
                 case LineType::funDef:
@@ -32,15 +33,17 @@ int main() {
                 }
                 case LineType::showFunVal:
                 {
-                    parser.showFunctionCalculation(line.getFunName(), line.getFunVal());
+                    parser.showFunctionCalculation(line.getFunName(), line.getFunVal(), 10);
                     break;
                 }
                 case LineType::showVal:
                 {
+                    parser.showVariableValue(line.getVarName(), 10);
                     break;
                 }
                 case LineType::showFun:
                 {
+                    parser.showFunction(line.getFunName());
                     break;
                 }
             }/* End of switch */
