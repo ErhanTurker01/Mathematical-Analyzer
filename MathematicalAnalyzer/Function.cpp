@@ -78,3 +78,14 @@ std::shared_ptr<Node> Function::getSource(){
 const std::string& Function::getName(){
     return name;
 }
+
+
+Variable::Variable(std::string name, const Number& num):name(name){
+    value = num;
+}
+std::string Variable::getName() const{
+    return name;
+}
+const Number& Variable::getValue() const{
+    return value;
+}

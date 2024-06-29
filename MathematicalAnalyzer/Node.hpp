@@ -28,11 +28,6 @@ enum class NodeType{
 };
 
 struct Node{
-    
-    static inline int count = 0;
-    int id;
-    static inline int all = 0;
-    
     NodeType nodeType;
     std::optional<OprType> oprType;
     std::optional<FunType> funType;

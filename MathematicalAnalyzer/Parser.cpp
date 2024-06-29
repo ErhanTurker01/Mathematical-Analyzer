@@ -292,7 +292,7 @@ void Parser::addFunction(std::string name, std::shared_ptr<Node> expr){
 }
 
 void Parser::addVariable(std::string name, std::shared_ptr<Node> val){
-    variableNames.push_back(name);variableValues.push_back(simplfyTree(val)->value.value());
+    variables.push_back(Variable(name, simplfyTree(val)->value.value()));
 }
 
 Parser::Parser(std::vector<Token> tokens):
@@ -519,10 +519,6 @@ std::shared_ptr<Node> Parser::changeEveryVariableWith(std::shared_ptr<Node> base
     findEveryVariable(base, vars);
     for (std::shared_ptr<Node> var : vars) *var = *copyParseTree(expr);
     return base;
-}
-
-void Parser::deleteTree(std::shared_ptr<Node> base){
-    for (std::shared_ptr<Node> child : base->childs) deleteTree(child);
 }
 
 bool Parser::isDefinedFunction(std::string name){

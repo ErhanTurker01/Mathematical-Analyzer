@@ -13,6 +13,16 @@
 
 using namespace functionNode;
 
+class Variable{
+    Number value;
+    std::string name;
+public:
+    Variable(std::string name, const Number& num);
+    std::string getName() const;
+    const Number& getValue() const;
+    
+};
+
 class Function{
     std::shared_ptr<Node> src;
     std::string name;
