@@ -18,8 +18,7 @@ class Parser{
     std::shared_ptr<Node> start;
     std::vector<Token> src;
     std::vector<Function> functions;
-    std::vector<std::string> variableNames;
-    std::vector<Number> variableValues;
+    std::vector<Variable> variables;
     
 private:
     void resolveTree(std::shared_ptr<Node> base);

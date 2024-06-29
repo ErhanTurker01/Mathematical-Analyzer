@@ -69,10 +69,12 @@ void Parser::resolveTree(std::shared_ptr<Node> base){
     
     for(int i=0;i<childs.size();i++){
         if (childs[i]->nodeType == NodeType::userNum) {
-            int varIndex;
-            for (varIndex=0; childs[i]->name != variableNames[varIndex]; varIndex++);
-            childs[i]->value = variableValues[varIndex];
-            childs[i]->nodeType = NodeType::num;
+            for (auto& var : variables) {
+                if(var.getName() == childs[i]->name){
+                    childs[i]->value = var.getValue();
+                    childs[i]->nodeType = NodeType::num;
+                }
+            }
         }
         else if(childs[i]->nodeType == NodeType::userFun){
             int funIndex;
@@ -524,11 +526,17 @@ void Parser::deleteTree(std::shared_ptr<Node> base){
 }
 
 bool Parser::isDefinedFunction(std::string name){
-    return true;
+    for (auto& fun : functions) {
+        if(fun.getName() == name) return true;
+    }
+    return false;
 }
 
 bool Parser::isDefinedVariable(std::string name){
-    return std::find(variableNames.begin(), variableNames.end(), name) != variableNames.end();
+    for (auto& var : variables) {
+        if(var.getName() == name) return true;
+    }
+    return false;
 }
 
 void Parser::showFunctionCalculation(std::string funName, const Number& num, mpfr_prec_t prec){
