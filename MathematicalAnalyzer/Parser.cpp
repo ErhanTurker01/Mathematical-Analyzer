@@ -5,12 +5,20 @@
 using namespace functionNode;
 /*From tokens creates a tree with necessary nodes*/
 void Parser::parse(std::vector<Token> tokens, std::shared_ptr<Node> base){
+    if(tokens.size() == 0) throw "No expression!";
     {
         int prc = 0, plc = 0,begin = 0;
         for(int end=0;end<tokens.size();end++){
             auto token = tokens[end];
             if(token.type == TokenType::pl) plc++;
             if(token.type == TokenType::pr) prc++;
+            if(token.type == TokenType::other){
+                if (!isDefinedFunction(token.value.value())) {
+                    if(!isDefinedVariable(token.value.value())){
+                        throw "Undifined Symbols!";
+                    }
+                }
+            }
             if(prc == plc && (plc+prc)){
                 base->childs.push_back(std::make_shared<Node>(Node({.nodeType = NodeType::expr})));
                 parse(std::vector<Token>(tokens.begin() + begin + 1, tokens.begin() + end), base->childs.back());
@@ -82,7 +90,7 @@ void Parser::resolveTree(std::shared_ptr<Node> base){
     /* This part handles functions */
     for(int i=0;i<childs.size();i++){
         if(childs[i]->nodeType == NodeType::fun){
-            if(childs[i+1] != NULL && childs[i+1]->nodeType == NodeType::expr){
+            if(childs.size() > i + 1 && childs[i+1]->nodeType == NodeType::expr){
                 std::shared_ptr<Node> fun = childs[i];
                 std::shared_ptr<Node> funexpr = childs[i+1];
                 std::shared_ptr<Node> expr = std::make_shared<Node>(Node({.nodeType = NodeType::expr}));
